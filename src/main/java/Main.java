@@ -24,7 +24,7 @@ public class Main {
         Connection connection = connectionPool.getConnection();
 
         // Create an instance of the DestinationsDAO
-        AbstractDAO<Destinations> destinationDAO = new DestinationsDAO(connection);
+        AbstractDAO<Destinations> destinationDAO = new DestinationsDAOImpl(connection);
 
         // Create an instance of the DestinationsService
         DestinationsService destinationsService = new DestinationsService(destinationDAO);

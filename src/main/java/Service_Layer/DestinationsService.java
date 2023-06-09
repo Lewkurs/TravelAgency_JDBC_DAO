@@ -1,5 +1,6 @@
 package Service_Layer;
 
+import DAO.AbstractDAO;
 import DAO.DestinationsDAO;
 import Business_Aspects.Destinations;
 import java.util.List;
@@ -8,8 +9,8 @@ import java.util.List;
 public class DestinationsService {
     private DestinationsDAO destinationsDAO;
 
-    public DestinationsService(DestinationsDAO destinationsDAO) {
-        this.destinationsDAO = destinationsDAO;
+    public DestinationsService(AbstractDAO<Destinations> destinationsDAO) {
+        this.destinationsDAO = (DestinationsDAO) destinationsDAO;
     }
 
     public Destinations getDestinationByID(int id) {
