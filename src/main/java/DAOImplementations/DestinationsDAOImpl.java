@@ -33,7 +33,7 @@ public class DestinationsDAOImpl implements DestinationsDAO {
                 ResultSet rs = ps.getGeneratedKeys();
                 if (rs.next()) {
                     int generatedId = rs.getInt(1);
-                    destination.setDestinationID(generatedId);
+                    destination.setDestinationsID(generatedId);
                 }
             }
         } catch (SQLException e) {
@@ -52,7 +52,7 @@ public class DestinationsDAOImpl implements DestinationsDAO {
 
             if (rs.next()) {
                 destination = new Destinations();
-                destination.setDestinationID(rs.getInt("destination_id"));
+                destination.setDestinationsID(rs.getInt("destination_id"));
                 destination.setName(rs.getString("name"));
                 destination.setDescription(rs.getString("description"));
                 destination.setPrice(rs.getDouble("price"));
@@ -72,7 +72,7 @@ public class DestinationsDAOImpl implements DestinationsDAO {
 
             while (rs.next()) {
                 Destinations destination = new Destinations();
-                destination.setDestinationID(rs.getInt("destination_id"));
+                destination.setDestinationsID(rs.getInt("destination_id"));
                 destination.setName(rs.getString("name"));
                 destination.setDescription(rs.getString("description"));
                 destination.setPrice(rs.getDouble("price"));
@@ -91,7 +91,7 @@ public class DestinationsDAOImpl implements DestinationsDAO {
             ps.setString(1, destination.getName());
             ps.setString(2, destination.getDescription());
             ps.setDouble(3, destination.getPrice());
-            ps.setInt(4, destination.getDestinationID());
+            ps.setInt(4, destination.getDestinationsID());
 
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
@@ -107,7 +107,7 @@ public class DestinationsDAOImpl implements DestinationsDAO {
     @Override
     public Destinations delete(Destinations destination) {
         try (PreparedStatement ps = connection.prepareStatement(DELETE_QUERY)) {
-            ps.setInt(1, destination.getDestinationID());
+            ps.setInt(1, destination.getDestinationsID());
 
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {

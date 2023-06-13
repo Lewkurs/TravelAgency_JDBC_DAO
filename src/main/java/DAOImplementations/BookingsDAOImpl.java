@@ -24,9 +24,9 @@ public class BookingsDAOImpl implements BookingsDAO {
             ps.setString(1, booking.getBookingDate());
             ps.setDouble(2, booking.getTotalCost());
             ps.setInt(3, booking.getCustomerID().getCustomerID());
-            ps.setInt(4, booking.getPaymentID().getPaymentID());
-            ps.setInt(5, booking.getFlightID().getFlightID());
-            ps.setInt(6, booking.getHotelID().getHotelID());
+            ps.setInt(4, booking.getPaymentID().getPaymentsID());
+            ps.setInt(5, booking.getFlightID().getFlightsID());
+            ps.setInt(6, booking.getHotelID().getHotelsID());
 
             // Execute the query
             int rowsAffected = ps.executeUpdate();
@@ -81,10 +81,6 @@ public class BookingsDAOImpl implements BookingsDAO {
         return bookingList;
     }
 
-    @Override
-    public Bookings save(Bookings bookings) {
-        return null;
-    }
 
     public Bookings update(Bookings booking) {
         String query = "UPDATE bookings SET booking_date = ?, total_cost = ?, customer_id = ?, payment_id = ?, flight_id = ?, hotel_id = ? WHERE booking_id = ?";
@@ -95,9 +91,9 @@ public class BookingsDAOImpl implements BookingsDAO {
             ps.setString(1, booking.getBookingDate());
             ps.setDouble(2, booking.getTotalCost());
             ps.setInt(3, booking.getCustomerID().getCustomerID());
-            ps.setInt(4, booking.getPaymentID().getPaymentID());
-            ps.setInt(5, booking.getFlightID().getFlightID());
-            ps.setInt(6, booking.getHotelID().getHotelID());
+            ps.setInt(4, booking.getPaymentID().getPaymentsID());
+            ps.setInt(5, booking.getFlightID().getFlightsID());
+            ps.setInt(6, booking.getHotelID().getHotelsID());
             ps.setInt(7, booking.getBookingID());
 
             // Execute the query
@@ -108,6 +104,11 @@ public class BookingsDAOImpl implements BookingsDAO {
             e.printStackTrace();
         }
         return booking;
+    }
+
+    @Override
+    public Bookings delete(Bookings booking) {
+        return null;
     }
 
     public Bookings delete(int bookingID) {
@@ -131,7 +132,7 @@ public class BookingsDAOImpl implements BookingsDAO {
             System.out.println("Error deleting booking: " + e.getMessage());
             e.printStackTrace();
         }
-        return Bookings;
+        return null;
     }
 
     private Bookings getBookingFromResultSet(ResultSet rs) throws SQLException {
@@ -144,13 +145,13 @@ public class BookingsDAOImpl implements BookingsDAO {
         customer.setCustomerID(rs.getInt("customer_id"));
 
         Payments payment = new Payments();
-        payment.setPaymentID(rs.getInt("payment_id"));
+        payment.setPaymentsID(rs.getInt("payment_id"));
 
         Flights flight = new Flights();
-        flight.setFlightID(rs.getInt("flight_id"));
+        flight.setFlightsID(rs.getInt("flight_id"));
 
         Hotels hotel = new Hotels();
-        hotel.setHotelID(rs.getInt("hotel_id"));
+        hotel.setHotelsID(rs.getInt("hotel_id"));
 
         booking.setCustomerID(customer);
         booking.setPaymentID(payment);

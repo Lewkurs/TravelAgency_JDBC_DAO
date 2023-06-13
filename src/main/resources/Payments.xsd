@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Payments">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Payment" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="PaymentsID" type="xs:int"/>
+                            <xs:element name="PaymentMethod" type="xs:string"/>
+                            <xs:element name="PaymentAmount" type="xs:double"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -2,30 +2,38 @@ package Service_Layer;
 
 import Business_Aspects.FlightBookings;
 import DAO.FlightBookingsDAO;
+import DAOImplementations.FlightBookingsDAOImpl;
+
+import java.util.List;
 
 import java.util.List;
 
 public class FlightBookingsService {
-    private FlightBookingsDAO flightBookingsDAO;
+    private FlightBookingsDAOImpl flightBookingsDAO;
 
-    public FlightBookingsService(FlightBookingsDAO flightBookingsDAO) {
+    public FlightBookingsService(FlightBookingsDAOImpl flightBookingsDAO) {
         this.flightBookingsDAO = flightBookingsDAO;
     }
 
-    public List<FlightBookings> getAllFlightBookings() {
-        return flightBookingsDAO.getAllFlightBookings();
+    public FlightBookings create(FlightBookings flightBooking) {
+        return flightBookingsDAO.create(flightBooking);
     }
 
-    public void saveFlightBooking(FlightBookings flightBooking) {
-        flightBookingsDAO.save(flightBooking);
+    public FlightBookings getById(int id) {
+        return flightBookingsDAO.getById(id);
     }
 
-    public void updateFlightBooking(FlightBookings flightBooking) {
-        flightBookingsDAO.update(flightBooking);
+    public List<FlightBookings> getAll() {
+        return flightBookingsDAO.getAll();
     }
 
-    public void deleteFlightBooking(FlightBookings flightBooking) {
-        flightBookingsDAO.delete(flightBooking);
+    public FlightBookings update(FlightBookings flightBooking) {
+        return flightBookingsDAO.update(flightBooking);
+    }
+
+    public FlightBookings delete(FlightBookings flightBooking) {
+        return flightBookingsDAO.delete(flightBooking);
     }
 }
+
 

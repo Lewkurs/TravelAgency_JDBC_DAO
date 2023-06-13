@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Employees>
+    <Employee>
+        <EmployeeID>1</EmployeeID>
+        <Name>John Doe</Name>
+        <Email>johndoe@example.com</Email>
+        <Phone>1234567890</Phone>
+    </Employee>
+    <Employee>
+        <EmployeeID>2</EmployeeID>
+        <Name>Jane Smith</Name>
+        <Email>janesmith@example.com</Email>
+        <Phone>9876543210</Phone>
+    </Employee>
+    <!-- Add more Employee elements here -->
+</Employees>

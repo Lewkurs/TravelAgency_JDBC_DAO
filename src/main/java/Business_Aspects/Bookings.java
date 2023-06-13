@@ -1,7 +1,7 @@
 package Business_Aspects;
 
     public class Bookings {
-        private int bookingID;
+        private static int bookingID;
         private String bookingDate;
         private double totalCost;
         private Customers customerID;
@@ -9,7 +9,7 @@ package Business_Aspects;
         private Flights flightID;
         private Hotels hotelID;
 
-        public int getBookingID() {
+        public static int getBookingID() {
             return bookingID;
         }
 

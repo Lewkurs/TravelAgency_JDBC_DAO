@@ -3,8 +3,16 @@ package Business_Aspects;
 import java.util.Objects;
 
 public class DestinationBookings {
+    private int destinationBookingID;
     private Destinations destinationID;
     private Bookings bookingID;
+    public void setDestinationBookingID(int destinationBookingID) {
+        this.destinationBookingID = destinationBookingID;
+    }
+
+    public int getDestinationBookingID() {
+        return destinationBookingID;
+    }
 
     public DestinationBookings(Destinations destinationID, Bookings bookingID) {
         this.destinationID = destinationID;
@@ -52,4 +60,5 @@ public class DestinationBookings {
     public int hashCode() {
         return Objects.hash(bookingID, destinationID);
     }
+
 }

@@ -34,7 +34,7 @@ public class FlightsDAOImpl implements FlightsDAO {
             if (rowsAffected > 0) {
                 ResultSet generatedKeys = ps.getGeneratedKeys();
                 if (generatedKeys.next()) {
-                    flight.setFlightID(generatedKeys.getInt(1));
+                    flight.setFlightsID(generatedKeys.getInt(1));
                     return flight;
                 }
             }
@@ -54,7 +54,7 @@ public class FlightsDAOImpl implements FlightsDAO {
 
             if (rs.next()) {
                 flight = new Flights();
-                flight.setFlightID(rs.getInt("flight_id"));
+                flight.setFlightsID(rs.getInt("flight_id"));
                 flight.setAirline(rs.getString("airline"));
                 flight.setDepartureCity(rs.getString("departure_city"));
                 flight.setArrivalCity(rs.getString("arrival_city"));
@@ -76,7 +76,7 @@ public class FlightsDAOImpl implements FlightsDAO {
 
             while (rs.next()) {
                 Flights flight = new Flights();
-                flight.setFlightID(rs.getInt("flight_id"));
+                flight.setFlightsID(rs.getInt("flight_id"));
                 flight.setAirline(rs.getString("airline"));
                 flight.setDepartureCity(rs.getString("departure_city"));
                 flight.setArrivalCity(rs.getString("arrival_city"));
@@ -99,7 +99,7 @@ public class FlightsDAOImpl implements FlightsDAO {
             ps.setString(3, flight.getArrivalCity());
             ps.setString(4, flight.getDepartureTime());
             ps.setString(5, flight.getArrivalTime());
-            ps.setInt(6, flight.getFlightID());
+            ps.setInt(6, flight.getFlightsID());
 
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
@@ -113,6 +113,10 @@ public class FlightsDAOImpl implements FlightsDAO {
     }
 
     @Override
+    public Flights delete(Flights flight) {
+        return null;
+    }
+
     public int delete(int flightID) {
         try (PreparedStatement ps = connection.prepareStatement(DELETE_QUERY)) {
             ps.setInt(1, flightID);

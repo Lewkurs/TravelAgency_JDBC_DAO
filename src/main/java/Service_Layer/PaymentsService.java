@@ -2,33 +2,37 @@ package Service_Layer;
 
 import Business_Aspects.Payments;
 import DAO.PaymentsDAO;
+import DAOImplementations.PaymentsDAOImpl;
+
+import java.util.List;
 
 import java.util.List;
 
 public class PaymentsService {
-    private PaymentsDAO paymentsDAO;
+    private PaymentsDAOImpl paymentsDAO;
 
-    public PaymentsService(PaymentsDAO paymentsDAO) {
+    public PaymentsService(PaymentsDAOImpl paymentsDAO) {
         this.paymentsDAO = paymentsDAO;
     }
 
-    public Payments getPaymentByID(int id) {
-        return paymentsDAO.getPaymentsByID(id);
+    public Payments create(Payments payment) {
+        return paymentsDAO.create(payment);
     }
 
-    public List<Payments> getAllPayments() {
-        return paymentsDAO.getAllPayments();
+    public Payments getById(int id) {
+        return paymentsDAO.getById(id);
     }
 
-    public void savePayment(Payments payment) {
-        paymentsDAO.save(payment);
+    public List<Payments> getAll() {
+        return paymentsDAO.getAll();
     }
 
-    public void updatePayment(Payments payment) {
-        paymentsDAO.update(payment);
+    public Payments update(Payments payment) {
+        return paymentsDAO.update(payment);
     }
 
-    public void deletePayment(Payments payment) {
-        paymentsDAO.delete(payment);
+    public Payments delete(Payments payment) {
+        return paymentsDAO.delete(payment);
     }
 }
+

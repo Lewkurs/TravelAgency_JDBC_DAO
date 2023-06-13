@@ -2,33 +2,34 @@ package Service_Layer;
 
 import DAO.CustomersDAO;
 import Business_Aspects.Customers;
+import DAOImplementations.CustomersDAOImpl;
 
 import java.util.List;
 
 public class CustomersService {
-    private CustomersDAO customersDAO;
+    private CustomersDAOImpl customersDAO;
 
-    public CustomersService(CustomersDAO customersDAO) {
+    public CustomersService(CustomersDAOImpl customersDAO) {
         this.customersDAO = customersDAO;
     }
 
-    public Customers getCustomerByID(int id) {
-        return customersDAO.getCustomerByID(id);
+    public Customers create(Customers customer) {
+        return customersDAO.create(customer);
     }
 
-    public List<Customers> getAllCustomers() {
-        return customersDAO.getAllCustomers();
+    public Customers getById(int id) {
+        return customersDAO.getById(id);
     }
 
-    public void saveCustomer(Customers customer) {
-        customersDAO.save(customer);
+    public List<Customers> getAll() {
+        return customersDAO.getAll();
     }
 
-    public void updateCustomer(Customers customer) {
-        customersDAO.update(customer);
+    public Customers update(Customers customer) {
+        return customersDAO.update(customer);
     }
 
-    public void deleteCustomer(Customers customer) {
-        customersDAO.delete(customer);
+    public Customers delete(Customers customer) {
+        return customersDAO.delete(customer);
     }
 }

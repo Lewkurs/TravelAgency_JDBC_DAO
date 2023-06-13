@@ -1,14 +1,14 @@
 package Business_Aspects;
 
 public class Flights {
-    private int flightsID;
+    private static int flightsID;
     private String airline;
     private String departureCity;
     private String arrivalCity;
     private String departureTime;
     private String arrivalTime;
 
-    public int getFlightsID() {
+    public static int getFlightsID() {
         return flightsID;
     }
 

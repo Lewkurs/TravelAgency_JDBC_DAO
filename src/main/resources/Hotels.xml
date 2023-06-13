@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Hotels>
+    <Hotel>
+        <HotelsID>1</HotelsID>
+        <HotelName>Hotel A</HotelName>
+        <Address>Address A</Address>
+        <DestinationsID>1</DestinationsID>
+    </Hotel>
+    <Hotel>
+        <HotelsID>2</HotelsID>
+        <HotelName>Hotel B</HotelName>
+        <Address>Address B</Address>
+        <DestinationsID>2</DestinationsID>
+    </Hotel>
+    <!-- Add more Hotel elements here -->
+</Hotels>

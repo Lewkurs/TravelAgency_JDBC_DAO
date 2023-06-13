@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmployeeRoles>
+    <EmployeeRole>
+        <EmployeeRoleID>1</EmployeeRoleID>
+        <RoleType>Manager</RoleType>
+    </EmployeeRole>
+    <EmployeeRole>
+        <EmployeeRoleID>2</EmployeeRoleID>
+        <RoleType>Assistant</RoleType>
+    </EmployeeRole>
+    <!-- Add more EmployeeRole elements here -->
+</EmployeeRoles>

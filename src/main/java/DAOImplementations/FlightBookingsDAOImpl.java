@@ -1,7 +1,9 @@
 package DAOImplementations;
 
+import Business_Aspects.Bookings;
 import DAO.FlightBookingsDAO;
 import Business_Aspects.FlightBookings;
+import Business_Aspects.Flights;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -21,14 +23,14 @@ public class FlightBookingsDAOImpl implements FlightBookingsDAO {
     }
 
     @Override
-    public FlightBookings create(FlightBookings flightBooking) {
+    public FlightBookings create(FlightBookings flightBookings) {
         try (PreparedStatement ps = connection.prepareStatement(INSERT_QUERY)) {
-            ps.setInt(1, flightBooking.getFlightID());
-            ps.setInt(2, flightBooking.getBookingID());
+            ps.setInt(1, Flights.getFlightsID());
+            ps.setInt(2, Bookings.getBookingID());
 
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
-                return flightBooking;
+                return flightBookings;
             }
         } catch (SQLException e) {
             System.out.println("Error creating flight booking: " + e.getMessage());
@@ -76,6 +78,15 @@ public class FlightBookingsDAOImpl implements FlightBookingsDAO {
     }
 
     @Override
+    public FlightBookings update(FlightBookings flightBooking) {
+        return null;
+    }
+
+    @Override
+    public FlightBookings delete(FlightBookings flightBooking) {
+        return null;
+    }
+
     public int delete(int bookingID) {
         try (PreparedStatement ps = connection.prepareStatement(DELETE_QUERY)) {
             ps.setInt(1, bookingID);

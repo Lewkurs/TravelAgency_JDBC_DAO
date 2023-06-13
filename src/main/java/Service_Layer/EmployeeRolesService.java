@@ -2,30 +2,38 @@ package Service_Layer;
 
 import Business_Aspects.EmployeeRoles;
 import DAO.EmployeeRolesDAO;
+import DAOImplementations.EmployeeRolesDAOImpl;
+
+import java.util.List;
 
 import java.util.List;
 
 public class EmployeeRolesService {
-    private EmployeeRolesDAO employeeRolesDAO;
+    private EmployeeRolesDAOImpl employeeRolesDAO;
 
-    public EmployeeRolesService(EmployeeRolesDAO employeeRolesDAO) {
+    public EmployeeRolesService(EmployeeRolesDAOImpl employeeRolesDAO) {
         this.employeeRolesDAO = employeeRolesDAO;
     }
 
-    public List<EmployeeRoles> getAllEmployeeRoles() {
-        return employeeRolesDAO.getAllEmployeeRoles();
+    public EmployeeRoles create(EmployeeRoles employeeRole) {
+        return employeeRolesDAO.create(employeeRole);
     }
 
-    public void saveEmployeeRole(EmployeeRoles employeeRole) {
-        employeeRolesDAO.save(employeeRole);
+    public EmployeeRoles getById(int id) {
+        return employeeRolesDAO.getById(id);
     }
 
-    public void updateEmployeeRole(EmployeeRoles employeeRole) {
-        employeeRolesDAO.update(employeeRole);
+    public List<EmployeeRoles> getAll() {
+        return employeeRolesDAO.getAll();
     }
 
-    public void deleteEmployeeRole(EmployeeRoles employeeRole) {
-        employeeRolesDAO.delete(employeeRole);
+    public EmployeeRoles update(EmployeeRoles employeeRole) {
+        return employeeRolesDAO.update(employeeRole);
+    }
+
+    public EmployeeRoles delete(EmployeeRoles employeeRole) {
+        return employeeRolesDAO.delete(employeeRole);
     }
 }
+
 

@@ -20,6 +20,7 @@ public class Activities {
     public void setActivityID(int activityID) {
         this.activityID = activityID;
     }
+
     public String getActivityName() {
         return activityName;
     }
@@ -38,10 +39,10 @@ public class Activities {
     public void setActivityPrice(String activityPrice) {
         this.activityPrice = activityPrice;
     }
-    public Destinations getDestinationID() {
+    public Destinations getDestination() {
         return destinationID;
     }
-    public void setDestinationID(Destinations destinationID) {
+    public void setDestination(Destinations destinationID) {
         this.destinationID = destinationID;
     }
 
@@ -65,4 +66,6 @@ public class Activities {
     public int hashCode() {
         return this.getActivityID();
     }
+
+
 }

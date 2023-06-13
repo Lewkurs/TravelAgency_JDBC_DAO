@@ -1,7 +1,7 @@
 package Business_Aspects;
 
 public class Destinations {
-    public static int destinationsID;
+    private int destinationsID;
     private String name;
     private String description;
     private double price;

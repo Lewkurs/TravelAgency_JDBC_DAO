@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Transportation>
+    <Transport>
+        <TransportationID>1</TransportationID>
+        <TransportationType>Car</TransportationType>
+        <Description>Private car rental</Description>
+        <PricePerHour>25.0</PricePerHour>
+        <DestinationID>1</DestinationID>
+    </Transport>
+    <Transport>
+        <TransportationID>2</TransportationID>
+        <TransportationType>Bus</TransportationType>
+        <Description>Public bus service</Description>
+        <PricePerHour>10.0</PricePerHour>
+        <DestinationID>2</DestinationID>
+    </Transport>
+    <!-- Add more Transport elements here -->
+</Transportation>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Rooms>
+    <Room>
+        <RoomsID>1</RoomsID>
+        <RoomType>Standard</RoomType>
+        <PricePerNight>100.0</PricePerNight>
+        <Availability>true</Availability>
+        <HotelID>1</HotelID>
+    </Room>
+    <Room>
+        <RoomsID>2</RoomsID>
+        <RoomType>Deluxe</RoomType>
+        <PricePerNight>150.0</PricePerNight>
+        <Availability>false</Availability>
+        <HotelID>2</HotelID>
+    </Room>
+    <!-- Add more Room elements here -->
+</Rooms>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Reviews>
+    <Review>
+        <ReviewsID>1</ReviewsID>
+        <Rating>5</Rating>
+        <ReviewDescription>Excellent service and facilities</ReviewDescription>
+        <CustomerID>1</CustomerID>
+        <HotelID>1</HotelID>
+        <DestinationID>1</DestinationID>
+        <ActivityID>1</ActivityID>
+    </Review>
+    <Review>
+        <ReviewsID>2</ReviewsID>
+        <Rating>4</Rating>
+        <ReviewDescription>Good experience, friendly staff</ReviewDescription>
+        <CustomerID>2</CustomerID>
+        <HotelID>2</HotelID>
+        <DestinationID>2</DestinationID>
+        <ActivityID>2</ActivityID>
+    </Review>
+    <!-- Add more Review elements here -->
+</Reviews>

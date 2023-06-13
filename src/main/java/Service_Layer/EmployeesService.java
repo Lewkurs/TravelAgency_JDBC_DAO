@@ -2,33 +2,37 @@ package Service_Layer;
 
 import Business_Aspects.Employees;
 import DAO.EmployeesDAO;
+import DAOImplementations.EmployeesDAOImpl;
+
+import java.util.List;
 
 import java.util.List;
 
 public class EmployeesService {
-    private EmployeesDAO employeesDAO;
+    private EmployeesDAOImpl employeesDAO;
 
-    public EmployeesService(EmployeesDAO employeesDAO) {
+    public EmployeesService(EmployeesDAOImpl employeesDAO) {
         this.employeesDAO = employeesDAO;
     }
 
-    public Employees getEmployeeByID(int id) {
-        return employeesDAO.getEmployeesByID(id);
+    public Employees create(Employees employee) {
+        return employeesDAO.create(employee);
     }
 
-    public List<Employees> getAllEmployees() {
-        return employeesDAO.getAllEmployees();
+    public Employees getById(int id) {
+        return employeesDAO.getById(id);
     }
 
-    public void saveEmployee(Employees employee) {
-        employeesDAO.save(employee);
+    public List<Employees> getAll() {
+        return employeesDAO.getAll();
     }
 
-    public void updateEmployee(Employees employee) {
-        employeesDAO.update(employee);
+    public Employees update(Employees employee) {
+        return employeesDAO.update(employee);
     }
 
-    public void deleteEmployee(Employees employee) {
-        employeesDAO.delete(employee);
+    public Employees delete(Employees employee) {
+        return employeesDAO.delete(employee);
     }
 }
+

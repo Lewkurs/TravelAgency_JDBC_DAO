@@ -26,7 +26,7 @@ public class DestinationBookingsDAOImpl implements DestinationBookingsDAO {
     @Override
     public DestinationBookings create(DestinationBookings destinationBooking) {
         try (PreparedStatement ps = connection.prepareStatement(INSERT_QUERY, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setInt(1, destinationBooking.getDestinationID().getId());
+            ps.setInt(1, destinationBooking.getDestinationID().getDestinationsID());
             ps.setInt(2, destinationBooking.getBookingID().getBookingID());
 
             int rowsAffected = ps.executeUpdate();
@@ -97,7 +97,7 @@ public class DestinationBookingsDAOImpl implements DestinationBookingsDAO {
     @Override
     public DestinationBookings update(DestinationBookings destinationBooking) {
         try (PreparedStatement ps = connection.prepareStatement(UPDATE_QUERY)) {
-            ps.setInt(1, destinationBooking.getDestinationID().getId());
+            ps.setInt(1, destinationBooking.getDestinationID().getDestinationID());
             ps.setInt(2, destinationBooking.getBookingID().getBookingID());
             ps.setInt(3, destinationBooking.getDestinationBookingID());
 

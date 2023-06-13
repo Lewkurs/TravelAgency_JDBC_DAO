@@ -2,29 +2,37 @@ package Service_Layer;
 
 import Business_Aspects.RolesEmployeeWorks;
 import DAO.RolesEmployeeWorksDAO;
+import DAOImplementations.RolesEmployeeWorksDAOImpl;
+
+import java.util.List;
 
 import java.util.List;
 
 public class RolesEmployeeWorksService {
-    private RolesEmployeeWorksDAO rolesEmployeeWorksDAO;
+    private RolesEmployeeWorksDAOImpl rolesEmployeeWorksDAO;
 
-    public RolesEmployeeWorksService(RolesEmployeeWorksDAO rolesEmployeeWorksDAO) {
+    public RolesEmployeeWorksService(RolesEmployeeWorksDAOImpl rolesEmployeeWorksDAO) {
         this.rolesEmployeeWorksDAO = rolesEmployeeWorksDAO;
     }
 
-    public List<RolesEmployeeWorks> getAllRolesEmployeeWorks() {
-        return rolesEmployeeWorksDAO.getAllRolesEmployeeWorks();
+    public RolesEmployeeWorks create(RolesEmployeeWorks roleEmployeeWork) {
+        return rolesEmployeeWorksDAO.create(roleEmployeeWork);
     }
 
-    public void saveRolesEmployeeWorks(RolesEmployeeWorks rolesEmployeeWorks) {
-        rolesEmployeeWorksDAO.save(rolesEmployeeWorks);
+    public RolesEmployeeWorks getById(int id) {
+        return rolesEmployeeWorksDAO.getById(id);
     }
 
-    public void updateRolesEmployeeWorks(RolesEmployeeWorks rolesEmployeeWorks) {
-        rolesEmployeeWorksDAO.update(rolesEmployeeWorks);
+    public List<RolesEmployeeWorks> getAll() {
+        return rolesEmployeeWorksDAO.getAll();
     }
 
-    public void deleteRolesEmployeeWorks(RolesEmployeeWorks rolesEmployeeWorks) {
-        rolesEmployeeWorksDAO.delete(rolesEmployeeWorks);
+    public RolesEmployeeWorks update(RolesEmployeeWorks roleEmployeeWork) {
+        return rolesEmployeeWorksDAO.update(roleEmployeeWork);
+    }
+
+    public RolesEmployeeWorks delete(RolesEmployeeWorks roleEmployeeWork) {
+        return rolesEmployeeWorksDAO.delete(roleEmployeeWork);
     }
 }
+

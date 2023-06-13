@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Hotels">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Hotel" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="HotelsID" type="xs:int"/>
+                            <xs:element name="HotelName" type="xs:string"/>
+                            <xs:element name="Address" type="xs:string"/>
+                            <xs:element name="DestinationsID" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

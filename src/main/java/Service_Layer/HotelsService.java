@@ -2,33 +2,37 @@ package Service_Layer;
 
 import Business_Aspects.Hotels;
 import DAO.HotelsDAO;
+import DAOImplementations.HotelsDAOImpl;
+
+import java.util.List;
 
 import java.util.List;
 
 public class HotelsService {
-    private HotelsDAO hotelsDAO;
+    private HotelsDAOImpl hotelsDAO;
 
-    public HotelsService(HotelsDAO hotelsDAO) {
+    public HotelsService(HotelsDAOImpl hotelsDAO) {
         this.hotelsDAO = hotelsDAO;
     }
 
-    public Hotels getHotelByID(int id) {
-        return hotelsDAO.getHotelsByID(id);
+    public Hotels create(Hotels hotel) {
+        return hotelsDAO.create(hotel);
     }
 
-    public List<Hotels> getAllHotels() {
-        return hotelsDAO.getAllHotels();
+    public Hotels getById(int id) {
+        return hotelsDAO.getById(id);
     }
 
-    public void saveHotel(Hotels hotel) {
-        hotelsDAO.save(hotel);
+    public List<Hotels> getAll() {
+        return hotelsDAO.getAll();
     }
 
-    public void updateHotel(Hotels hotel) {
-        hotelsDAO.update(hotel);
+    public Hotels update(Hotels hotel) {
+        return hotelsDAO.update(hotel);
     }
 
-    public void deleteHotel(Hotels hotel) {
-        hotelsDAO.delete(hotel);
+    public Hotels delete(Hotels hotel) {
+        return hotelsDAO.delete(hotel);
     }
 }
+

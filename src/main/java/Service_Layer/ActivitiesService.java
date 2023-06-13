@@ -2,6 +2,7 @@ package Service_Layer;
 
 import Business_Aspects.Activities;
 import DAO.ActivitiesDAO;
+import DAOImplementations.ActivitiesDAOImpl;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -10,30 +11,31 @@ import java.util.List;
 import java.util.List;
 
 public class ActivitiesService {
-    private ActivitiesDAO activitiesDAO;
+    private ActivitiesDAOImpl activitiesDAO;
 
-    public ActivitiesService(ActivitiesDAO activitiesDAO) {
+    public ActivitiesService(ActivitiesDAOImpl activitiesDAO) {
         this.activitiesDAO = activitiesDAO;
     }
 
-    public Activities getActivitiesByID(int id) {
-        return activitiesDAO.getActivitiesByID(id);
+    public Activities create(Activities activity) {
+        return activitiesDAO.create(activity);
     }
 
-    public List<Activities> getAllActivities() {
-        return activitiesDAO.getAllActivities();
+    public Activities getById(int id) {
+        return activitiesDAO.getById(id);
     }
 
-    public void saveActivities(Activities activities) {
-        activitiesDAO.save(activities);
+    public List<Activities> getAll() {
+        return activitiesDAO.getAll();
     }
 
-    public void updateActivities(Activities activities) {
-        activitiesDAO.update(activities);
+    public Activities update(Activities activity) {
+        return activitiesDAO.update(activity);
     }
 
-    public void deleteActivities(Activities activities) {
-        activitiesDAO.delete(activities);
+    public Activities delete(Activities activity) {
+        return activitiesDAO.delete(activity);
     }
 }
+
 

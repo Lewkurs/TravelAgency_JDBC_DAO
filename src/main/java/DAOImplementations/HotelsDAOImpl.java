@@ -26,13 +26,13 @@ public class HotelsDAOImpl implements HotelsDAO {
         try (PreparedStatement ps = connection.prepareStatement(INSERT_QUERY, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, hotel.getHotelName());
             ps.setString(2, hotel.getAddress());
-            ps.setInt(3, hotel.getDestinationsID());
+            ps.setInt(3, hotel.getHotelsID());
 
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
                 ResultSet generatedKeys = ps.getGeneratedKeys();
                 if (generatedKeys.next()) {
-                    hotel.setHotelID(generatedKeys.getInt(1));
+                    hotel.setHotelsID(generatedKeys.getInt(1));
                 }
                 return hotel;
             }
@@ -52,10 +52,10 @@ public class HotelsDAOImpl implements HotelsDAO {
 
             if (rs.next()) {
                 hotel = new Hotels();
-                hotel.setHotelID(rs.getInt("hotel_id"));
+                hotel.setHotelsID(rs.getInt("hotel_id"));
                 hotel.setHotelName(rs.getString("hotel_name"));
                 hotel.setAddress(rs.getString("address"));
-                hotel.setDestinationsID(rs.getInt("destinations_id"));
+
             }
         } catch (SQLException e) {
             System.out.println("Error retrieving hotel: " + e.getMessage());
@@ -72,10 +72,9 @@ public class HotelsDAOImpl implements HotelsDAO {
 
             while (rs.next()) {
                 Hotels hotel = new Hotels();
-                hotel.setHotelID(rs.getInt("hotel_id"));
+                hotel.setHotelsID(rs.getInt("hotel_id"));
                 hotel.setHotelName(rs.getString("hotel_name"));
                 hotel.setAddress(rs.getString("address"));
-                hotel.setDestinationsID(rs.getInt("destinations_id"));
                 hotelList.add(hotel);
             }
         } catch (SQLException e) {
@@ -90,8 +89,7 @@ public class HotelsDAOImpl implements HotelsDAO {
         try (PreparedStatement ps = connection.prepareStatement(UPDATE_QUERY)) {
             ps.setString(1, hotel.getHotelName());
             ps.setString(2, hotel.getAddress());
-            ps.setInt(3, hotel.getDestinationsID());
-            ps.setInt(4, hotel.getHotelID());
+            ps.setInt(4, hotel.getHotelsID());
 
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
@@ -109,7 +107,6 @@ public class HotelsDAOImpl implements HotelsDAO {
         return null;
     }
 
-    @Override
     public int delete(int hotelID) {
         try (PreparedStatement ps = connection.prepareStatement(DELETE_QUERY)) {
             ps.setInt(1, hotelID);

@@ -87,11 +87,6 @@ public class CustomersDAOImpl implements CustomersDAO {
     }
 
     @Override
-    public Customers save(Customers customers) {
-        return null;
-    }
-
-    @Override
     public Customers update(Customers customer) {
         try (PreparedStatement ps = connection.prepareStatement(UPDATE_QUERY)) {
             ps.setString(1, customer.getName());

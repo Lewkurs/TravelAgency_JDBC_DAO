@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Rooms">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Room" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="RoomsID" type="xs:int"/>
+                            <xs:element name="RoomType" type="xs:string"/>
+                            <xs:element name="PricePerNight" type="xs:double"/>
+                            <xs:element name="Availability" type="xs:boolean"/>
+                            <xs:element name="HotelID" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
