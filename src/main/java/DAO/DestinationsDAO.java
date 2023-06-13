@@ -2,10 +2,15 @@ package DAO;
 
 import Business_Aspects.Destinations;
 import java.util.List;
-public interface DestinationsDAO {
-    Destinations getDestinationsByID(int id);
-    List<Destinations> getAllDestinations();
-    void save(Destinations destinations);
-    void update(Destinations destinations);
-    void delete(Destinations destinations);
+public interface DestinationsDAO extends IDAO<Destinations> {
+
+     Destinations create(Destinations destination); // Create a new destination
+
+     Destinations getById(int destinationID); // Get a destination by its ID
+
+     List<Destinations> getAll(); // Get all destinations
+
+     Destinations update(Destinations destination); // Update a destination
+
+     Destinations delete(Destinations destination); // Delete a destination
 }

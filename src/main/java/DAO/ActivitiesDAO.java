@@ -14,42 +14,18 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 
-public interface ActivitiesDAO {
+public interface ActivitiesDAO extends IDAO<Activities> {
 
-    Activities getActivitiesByID(int id);
-    List<Activities> getAllActivities();
-    void save(Activities activities);
-    void update(Activities activities);
-    void delete(Activities activities);
+    Activities create(Activities activity); // Create a new activity
+
+    Activities getById(int activityID); // Get an activity by its ID
+
+    List<Activities> getAll(); // Get all activities
+
+    Activities update(Activities activity); // Update an activity
+
+    Activities delete(Activities activity); // Delete an activity
+
+
 }
 
-
-
-   /* private Connection connection;
-
-    public ActivitiesDAO() {
-        this.connection = connection;
-    }
-
-    public void createActivity(Activities activity) {
-        String insertQuery = "INSERT INTO activities (activity_id, activity_name, activity_description, activity_price, destination_id) VALUES (?, ?, ?, ?, ?)";
-
-        try (PreparedStatement statement = connection.prepareStatement(insertQuery)) {
-            statement.setInt(1, activity.getActivityID());
-            statement.setString(2, activity.getActivityName());
-            statement.setString(3, activity.getActivityDescription());
-            statement.setString(4, activity.getActivityPrice());
-            statement.setInt(5, Destinations.getDestinationsID());
-
-            int rowsInserted = statement.executeUpdate();
-            if (rowsInserted > 0) {
-                System.out.println("Activity created successfully.");
-            } else {
-                System.out.println("Failed to create activity.");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-}
-*/
