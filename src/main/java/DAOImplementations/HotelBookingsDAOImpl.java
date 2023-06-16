@@ -98,7 +98,6 @@ public class HotelBookingsDAOImpl implements HotelBookingsDAO {
         return null;
     }
 
-    @Override
     public int delete(int bookingID) {
         try (PreparedStatement ps = connection.prepareStatement(DELETE_QUERY)) {
             ps.setInt(1, bookingID);

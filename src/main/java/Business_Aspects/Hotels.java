@@ -1,10 +1,19 @@
 package Business_Aspects;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Collections;
+import java.util.List;
+
 public class Hotels {
+    @JsonProperty ("hotelsID")
     private int hotelsID;
+    @JsonProperty ("hotelName")
     private String hotelName;
-    private String address;
-    private Destinations destinationsID;
+    @JsonProperty ("address")
+    private List<String> address;
+    @JsonProperty ("destinationsID")
+    private List<Destinations> destinationsID;
 
     public int getHotelsID() {
         return hotelsID;
@@ -23,19 +32,19 @@ public class Hotels {
     }
 
     public String getAddress() {
-        return address;
+        return address.toString();
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.address = Collections.singletonList(address);
     }
 
     public Destinations getDestinationsID() {
-        return destinationsID;
+        return (Destinations) destinationsID;
     }
 
     public void setDestinationsID(Destinations destinationsID) {
-        this.destinationsID = destinationsID;
+        this.destinationsID = (List<Destinations>) destinationsID;
     }
 
     @Override

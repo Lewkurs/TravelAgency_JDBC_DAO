@@ -13,5 +13,5 @@ public interface BookingsDAO extends IDAO<Bookings> {
 
     Bookings update(Bookings booking); // Update a booking
 
-    Bookings delete(Bookings booking); // Delete a booking
+    Bookings delete(int bookingID); // Delete a booking
 }

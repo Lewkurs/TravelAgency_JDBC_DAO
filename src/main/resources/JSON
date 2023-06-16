@@ -1,0 +1,80 @@
+{
+  "customers": [
+    {
+      "customerID": 1,
+      "name": "John Doe",
+      "email": "johndoe@example.com",
+      "contactNumber": "+1234567890"
+    },
+    {
+      "customerID": 2,
+      "name": "Jane Smith",
+      "email": "janesmith@example.com",
+      "contactNumber": "+9876543210"
+    }
+  ],
+  "flights": [
+    {
+      "flightID": 1,
+      "airline": "Example Airlines",
+      "departureCity": "New York",
+      "arrivalCity": "London",
+      "departureTime": "2023-06-15 10:00:00",
+      "arrivalTime": "2023-06-15 16:00:00"
+    },
+    {
+      "flightID": 2,
+      "airline": "Sample Airways",
+      "departureCity": "Paris",
+      "arrivalCity": "Tokyo",
+      "departureTime": "2023-06-16 08:00:00",
+      "arrivalTime": "2023-06-16 20:00:00"
+    }
+  ],
+  "hotels": [
+    {
+      "hotelsID": 1,
+      "hotelName": "Example Hotel",
+      "address": "123 Main St, City",
+      "destinationsID": 1
+    },
+    {
+      "hotelsID": 2,
+      "hotelName": "Sample Resort",
+      "address": "456 Park Ave, Town",
+      "destinationsID": 2
+    }
+  ],
+  "payments": [
+    {
+      "paymentsID": 1,
+      "paymentMethod": "Credit Card",
+      "paymentAmount": 1000.0
+    },
+    {
+      "paymentsID": 2,
+      "paymentMethod": "PayPal",
+      "paymentAmount": 750.0
+    }
+  ],
+  "bookings": [
+    {
+      "bookingID": 1,
+      "bookingDate": "2023-06-14",
+      "totalCost": 1500.0,
+      "customerID": 1,
+      "paymentID": 1,
+      "flightID": 1,
+      "hotelID": 1
+    },
+    {
+      "bookingID": 2,
+      "bookingDate": "2023-06-15",
+      "totalCost": 1200.0,
+      "customerID": 2,
+      "paymentID": 2,
+      "flightID": 2,
+      "hotelID": 2
+    }
+  ]
+}

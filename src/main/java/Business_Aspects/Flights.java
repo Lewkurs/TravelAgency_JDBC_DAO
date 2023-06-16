@@ -1,14 +1,27 @@
 package Business_Aspects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Flights {
+    @JsonProperty ("flightsID")
     private static int flightsID;
+    @JsonProperty ("airline")
     private String airline;
+    @JsonProperty ("departureCity")
     private String departureCity;
+    @JsonProperty ("arrivalCity")
     private String arrivalCity;
+    @JsonProperty ("departureTime")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private String departureTime;
+    @JsonProperty ("arrivalTime")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private String arrivalTime;
 
     public static int getFlightsID() {
+
+
         return flightsID;
     }
 

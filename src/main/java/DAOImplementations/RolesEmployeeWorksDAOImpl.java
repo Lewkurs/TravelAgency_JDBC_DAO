@@ -64,7 +64,6 @@ public class RolesEmployeeWorksDAOImpl implements RolesEmployeeWorksDAO {
         return null;
     }
 
-    @Override
     public List<RolesEmployeeWorks> getById(Employees employee) {
         List<RolesEmployeeWorks> rolesEmployeeWorksList = new ArrayList<>();
         try (PreparedStatement ps = connection.prepareStatement(SELECT_BY_EMPLOYEE_QUERY)) {

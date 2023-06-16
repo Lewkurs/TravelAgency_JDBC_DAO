@@ -1,9 +1,15 @@
 package Business_Aspects;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Customers {
+    @JsonProperty("customerID")
     private int customerID;
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("email")
     private String email;
+    @JsonProperty("contactNumber")
     private String contactNumber;
 
     public int getCustomerID() {

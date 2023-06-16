@@ -1,8 +1,13 @@
 package Business_Aspects;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Payments {
+    @JsonProperty ("paymentsID")
     private int paymentsID;
+    @JsonProperty ("paymentMethod")
     private String paymentMethod;
+    @JsonProperty ("paymentAmount")
     private double paymentAmount;
 
     public int getPaymentsID() {

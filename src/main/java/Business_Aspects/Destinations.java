@@ -1,12 +1,15 @@
 package Business_Aspects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Destinations {
+
     private int destinationsID;
     private String name;
     private String description;
     private double price;
 
-    public static int getDestinationsID() {
+    public int getDestinationsID() {
         return destinationsID;
     }
 

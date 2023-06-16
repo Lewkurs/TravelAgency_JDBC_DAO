@@ -1,5 +1,6 @@
 package DAOImplementations;
 
+import DAO.ConnectionPool;
 import DAO.DestinationBookingsDAO;
 import Business_Aspects.DestinationBookings;
 import Business_Aspects.Destinations;
@@ -19,8 +20,9 @@ public class DestinationBookingsDAOImpl implements DestinationBookingsDAO {
 
     private Connection connection;
 
-    public DestinationBookingsDAOImpl(Connection connection) {
-        this.connection = connection;
+    public DestinationBookingsDAOImpl() {
+        // Establish a new connection or use a connection pool
+        connection = ConnectionPool.getConnection();
     }
 
     @Override

@@ -1,7 +1,7 @@
 package DAOImplementations;
 
 import Business_Aspects.Bookings;
-import DAO.FlightBookingsDAO;
+import DAO.BookingsDAO;
 import Business_Aspects.FlightBookings;
 import Business_Aspects.Flights;
 
@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FlightBookingsDAOImpl implements FlightBookingsDAO {
+public class FlightBookingsDAOImpl implements BookingsDAO {
 
     private static final String INSERT_QUERY = "INSERT INTO flight_bookings(flight_id, booking_id) VALUES (?, ?)";
     private static final String SELECT_BY_ID_QUERY = "SELECT * FROM flight_bookings WHERE booking_id = ?";
@@ -23,14 +23,14 @@ public class FlightBookingsDAOImpl implements FlightBookingsDAO {
     }
 
     @Override
-    public FlightBookings create(FlightBookings flightBookings) {
+    public Bookings create(Bookings booking) {
         try (PreparedStatement ps = connection.prepareStatement(INSERT_QUERY)) {
-            ps.setInt(1, Flights.getFlightsID());
-            ps.setInt(2, Bookings.getBookingID());
+            ps.setInt(1, booking.getFlightID().get(0).getFlightsID());
+            ps.setInt(2, booking.getBookingID());
 
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
-                return flightBookings;
+                return booking;
             }
         } catch (SQLException e) {
             System.out.println("Error creating flight booking: " + e.getMessage());
@@ -40,63 +40,114 @@ public class FlightBookingsDAOImpl implements FlightBookingsDAO {
     }
 
     @Override
-    public FlightBookings getById(int bookingID) {
-        FlightBookings flightBooking = null;
+    public Bookings getById(int bookingID) {
+        Bookings booking = null;
         try (PreparedStatement ps = connection.prepareStatement(SELECT_BY_ID_QUERY)) {
             ps.setInt(1, bookingID);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                flightBooking = new FlightBookings();
-                flightBooking.setFlightID(rs.getInt("flight_id"));
-                flightBooking.setBookingID(rs.getInt("booking_id"));
+                int flightID = rs.getInt("flight_id");
+                int retrievedBookingID = rs.getInt("booking_id");
+
+                // Retrieve the Flights objects corresponding to the flight ID
+                List<Flights> flights = getFlightsByID(flightID);
+
+                // Create the Bookings object
+                booking = new Bookings();
+                booking.setBookingID(retrievedBookingID);
+                booking.setFlightID(flights);
             }
         } catch (SQLException e) {
             System.out.println("Error retrieving flight booking: " + e.getMessage());
             e.printStackTrace();
         }
-        return flightBooking;
+        return booking;
     }
 
     @Override
-    public List<FlightBookings> getAll() {
-        List<FlightBookings> flightBookingList = new ArrayList<>();
+    public List<Bookings> getAll() {
+        List<Bookings> bookingList = new ArrayList<>();
         try (PreparedStatement ps = connection.prepareStatement(SELECT_ALL_QUERY)) {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                FlightBookings flightBooking = new FlightBookings();
-                flightBooking.setFlightID(rs.getInt("flight_id"));
-                flightBooking.setBookingID(rs.getInt("booking_id"));
-                flightBookingList.add(flightBooking);
+                Bookings booking = new Bookings();
+                int flightID = rs.getInt("flight_id");
+                int bookingID = rs.getInt("booking_id");
+
+                // Retrieve the Flights objects corresponding to the flight ID
+                List<Flights> flights = getFlightsByID(flightID);
+
+                // Set the retrieved details in the Bookings object
+                booking.setBookingID(bookingID);
+                booking.setFlightID(flights);
+
+                bookingList.add(booking);
             }
         } catch (SQLException e) {
             System.out.println("Error retrieving flight bookings: " + e.getMessage());
             e.printStackTrace();
         }
-        return flightBookingList;
+        return bookingList;
     }
 
     @Override
-    public FlightBookings update(FlightBookings flightBooking) {
+    public Bookings update(Bookings booking) {
+        // TODO: Implement update logic
         return null;
     }
 
     @Override
-    public FlightBookings delete(FlightBookings flightBooking) {
+    public Bookings delete(Bookings bookings) {
         return null;
     }
 
-    public int delete(int bookingID) {
+    @Override
+    public Bookings delete(int bookingID) {
         try (PreparedStatement ps = connection.prepareStatement(DELETE_QUERY)) {
             ps.setInt(1, bookingID);
-
             int rowsAffected = ps.executeUpdate();
-            return rowsAffected;
+            if (rowsAffected > 0) {
+                Bookings deletedBooking = new Bookings();
+                deletedBooking.setBookingID(bookingID);
+                return deletedBooking;
+            }
         } catch (SQLException e) {
             System.out.println("Error deleting flight booking: " + e.getMessage());
             e.printStackTrace();
         }
-        return 0;
+        return null;
+    }
+
+    private List<Flights> getFlightsByID(int flightID) {
+        List<Flights> flights = new ArrayList<>();
+        String query = "SELECT * FROM flights WHERE flight_id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, flightID);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String airline = rs.getString("airline");
+                String departureCity = rs.getString("departure_city");
+                String arrivalCity = rs.getString("arrival_city");
+                String departureTime = rs.getString("departure_time");
+                String arrivalTime = rs.getString("arrival_time");
+
+                Flights flight = new Flights();
+                flight.setFlightsID(flightID);
+                flight.setAirline(airline);
+                flight.setDepartureCity(departureCity);
+                flight.setArrivalCity(arrivalCity);
+                flight.setDepartureTime(departureTime);
+                flight.setArrivalTime(arrivalTime);
+
+                flights.add(flight);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving flights: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return flights;
     }
 }

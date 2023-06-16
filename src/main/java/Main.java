@@ -3,6 +3,9 @@ import Business_Aspects.DestinationBookings;
 import Business_Aspects.Destinations;
 import Business_Aspects.Flights;
 import DAO.*;
+import Parsers.DOMParser;
+import Parsers.JAXBParser;
+import Parsers.JSONParser;
 import Service_Layer.DestinationsService;
 import Service_Layer.FlightsService;
 import DAO.ConnectionPool;
@@ -30,35 +33,39 @@ public class Main {
     private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        try (Connection connection = ConnectionPool.getConnection()) {
+            Scanner scanner = new Scanner(System.in);
 
-        while (true) {
-            logger.info("===== Travel Agency Menu =====");
-            logger.info("1. Organize a Trip");
-            logger.info("2. Set Preferences");
-            logger.info("0. Exit");
+            while (true) {
+                logger.info("===== Travel Agency Menu =====");
+                logger.info("1. Organize a Trip");
+                logger.info("2. Set Preferences");
+                logger.info("0. Exit");
 
-            logger.info("Enter your choice: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline character
+                logger.info("Enter your choice: ");
+                int choice = scanner.nextInt();
+                scanner.nextLine(); // Consume newline character
 
-            switch (choice) {
-                case 1:
-                    organizeTripMenu(scanner);
-                    break;
-                case 2:
-                    setPreferencesMenu(scanner);
-                    break;
-                case 0:
-                    logger.info("Exiting...");
-                    return;
-                default:
-                    logger.warning("Invalid choice. Please try again.");
+                switch (choice) {
+                    case 1:
+                        organizeTripMenu(scanner, connection);
+                        break;
+                    case 2:
+                        setPreferencesMenu(scanner);
+                        break;
+                    case 0:
+                        logger.info("Exiting...");
+                        return;
+                    default:
+                        logger.warning("Invalid choice. Please try again.");
+                }
             }
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, "Failed to establish database connection", e);
         }
     }
 
-    private static void organizeTripMenu(Scanner scanner) {
+    private static void organizeTripMenu(Scanner scanner, Connection connection) {
         while (true) {
             logger.info("===== Organize a Trip Menu =====");
             logger.info("1. Book a Hotel");
@@ -71,7 +78,7 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    bookHotel(scanner);
+                    bookHotel(scanner, connection);
                     break;
                 case 2:
                     bookFlight(scanner);
@@ -84,7 +91,7 @@ public class Main {
         }
     }
 
-    private static void bookHotel(Scanner scanner) {
+    private static void bookHotel(Scanner scanner, Connection connection) {
         logger.info("=== Hotel Booking ===");
         // Gather necessary hotel booking information from the user
         // Example:
@@ -100,7 +107,10 @@ public class Main {
         hotel.setAddress(address);
         // ... set other hotel properties based on user input
 
-        // Perform hotel booking by calling the appropriate method from the DAO
+        // Create an instance of HotelsDAOImpl with the database connection
+        HotelsDAOImpl hotelsDAO = new HotelsDAOImpl(connection);
+
+        // Perform hotel booking by calling the create method from the DAO
         Hotels createdHotel = hotelsDAO.create(hotel);
         if (createdHotel != null) {
             logger.info("Hotel booked successfully!");
@@ -126,7 +136,11 @@ public class Main {
         flight.setDepartureCity(departureCity);
         // ... set other flight properties based on user input
 
-        // Perform flight booking by calling the appropriate method from the DAO
+        // Create an instance of FlightsDAOImpl with the database connection
+        Connection connection = ConnectionPool.getConnection();
+        FlightsDAOImpl flightsDAO = new FlightsDAOImpl(connection);
+
+        // Perform flight booking by calling the create method on the FlightsDAOImpl instance
         Flights createdFlight = flightsDAO.create(flight);
         if (createdFlight != null) {
             logger.info("Flight booked successfully!");
@@ -134,12 +148,17 @@ public class Main {
         } else {
             logger.warning("Flight booking failed. Please try again.");
         }
+
+        // Close the database connection
+        ConnectionPool.closeConnection(connection);
     }
 
+
     private static void setPreferencesMenu(Scanner scanner) {
-        // Implement the preferences menu functionality based on your project requirements
+        // ... existing implementation for setting preferences
     }
 }
+
 
 
 
