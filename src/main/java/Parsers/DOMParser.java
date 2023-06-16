@@ -41,9 +41,9 @@ public class DOMParser {
         Scanner scanner = new Scanner(System.in);
 
         while (!exit) {
-            System.out.println("1. Parse transportation elements");
-            System.out.println("2. Exit");
-            System.out.print("Enter your choice: ");
+            logger.info("1. Parse transportation elements");
+            logger.info("2. Exit");
+            logger.info("Enter your choice: ");
 
             int choice = scanner.nextInt();
 

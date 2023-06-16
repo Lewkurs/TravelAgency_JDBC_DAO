@@ -1,9 +1,19 @@
 package Business_Aspects;
+import jakarta.xml.bind.annotation.*;
 
+@XmlRootElement(name = "Employees")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Employees {
+    @XmlElement(name = "employeeID")
     private int employeeID;
+
+    @XmlElement(name = "name")
     private String name;
+
+    @XmlElement(name = "email")
     private String email;
+
+    @XmlElement(name = "phone")
     private String phone;
 
     public int getEmployeeID() {

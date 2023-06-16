@@ -1,25 +1,44 @@
 package Business_Aspects;
 
+import jakarta.xml.bind.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.ArrayList;
 import java.util.List;
 
+@XmlRootElement(name = "Bookings")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Bookings {
+    @XmlElement(name = "bookingID")
     @JsonProperty("bookingID")
     private int bookingID;
+
+    @XmlElement(name = "bookingDate")
     @JsonProperty("bookingDate")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private String bookingDate;
+
+    @XmlElement(name = "totalCost")
     @JsonProperty("totalCost")
     private double totalCost;
+
+    @XmlElementWrapper(name = "customerIDs")
+    @XmlElement(name = "customerID")
     @JsonProperty("customerID")
     private List<Customers> customerID;
+
+    @XmlElementWrapper(name = "paymentIDs")
+    @XmlElement(name = "paymentID")
     @JsonProperty("paymentID")
     private List<Payments> paymentID;
+
+    @XmlElementWrapper(name = "flightIDs")
+    @XmlElement(name = "flightID")
     @JsonProperty("flightID")
     private List<Flights> flightID;
+
+    @XmlElementWrapper(name = "hotelIDs")
+    @XmlElement(name = "hotelID")
     @JsonProperty("hotelID")
     private List<Hotels> hotelID;
 

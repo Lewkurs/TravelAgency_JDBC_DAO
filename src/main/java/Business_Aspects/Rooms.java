@@ -1,10 +1,28 @@
 package Business_Aspects;
+import jakarta.xml.bind.annotation.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@XmlRootElement(name = "Rooms")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Rooms {
+    @XmlElement(name = "roomsID")
+    @JsonProperty("roomsID")
     private int roomsID;
+
+    @XmlElement(name = "roomType")
+    @JsonProperty("roomType")
     private String roomType;
+
+    @XmlElement(name = "pricePerNight")
+    @JsonProperty("pricePerNight")
     private double pricePerNight;
+
+    @XmlElement(name = "availability")
+    @JsonProperty("availability")
     private boolean availability;
+
+    @XmlElement(name = "hotelID")
+    @JsonProperty("hotelID")
     private Hotels hotelID;
 
     public int getRoomsID() {

@@ -1,7 +1,13 @@
 package Business_Aspects;
+import jakarta.xml.bind.annotation.*;
 
+@XmlRootElement(name = "EmployeeRoles")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class EmployeeRoles {
+    @XmlElement(name = "employeeRoleID")
     private int employeeRoleID;
+
+    @XmlElement(name = "roleType")
     private String roleType;
 
     public int getEmployeeRoleID() {

@@ -7,8 +7,12 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class JAXBParser {
+    private static final Logger logger = Logger.getLogger(JAXBParser.class.getName());
+
     public static void main(String[] args) {
         displayMenu();
     }
@@ -18,9 +22,9 @@ public class JAXBParser {
         Scanner scanner = new Scanner(System.in);
 
         while (!exit) {
-            System.out.println("1. Parse Customers.xml file");
-            System.out.println("2. Exit");
-            System.out.print("Enter your choice: ");
+            logger.info("1. Parse Customers.xml file");
+            logger.info("2. Exit");
+            logger.info("Enter your choice: ");
 
             int choice = scanner.nextInt();
 
@@ -32,7 +36,7 @@ public class JAXBParser {
                     exit = true;
                     break;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    logger.log(Level.WARNING, "Invalid choice. Please try again.");
                     break;
             }
         }
@@ -51,9 +55,9 @@ public class JAXBParser {
             Customers customers = (Customers) unmarshaller.unmarshal(file);
 
             // Display the parsed customers data
-            System.out.println(customers);
+            logger.log(Level.INFO, customers.toString());
         } catch (JAXBException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Failed to parse the XML file.", e);
         }
     }
 }

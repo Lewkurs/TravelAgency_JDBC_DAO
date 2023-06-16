@@ -21,9 +21,9 @@ public class JSONParser {
         Scanner scanner = new Scanner(System.in);
 
         while (!exit) {
-            System.out.println("1. Parse JSON file");
-            System.out.println("2. Exit");
-            System.out.print("Enter your choice: ");
+            logger.info("1. Parse JSON file");
+            logger.info("2. Exit");
+            logger.info("Enter your choice: ");
 
             int choice = scanner.nextInt();
 
@@ -35,7 +35,7 @@ public class JSONParser {
                     exit = true;
                     break;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    logger.info("Invalid choice. Please try again.");
                     break;
             }
         }
@@ -46,7 +46,7 @@ public class JSONParser {
     private static void parseJSONFile() {
         try {
             // Read the JSON file
-            String json = "src/main/java/Resources/JSON.java";
+            String json = "src/main/java/resources/JSON";
 
             // Create an ObjectMapper instance
             ObjectMapper objectMapper = new ObjectMapper();

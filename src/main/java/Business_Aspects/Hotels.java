@@ -4,15 +4,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Collections;
 import java.util.List;
+import jakarta.xml.bind.annotation.*;
 
+@XmlRootElement(name = "Hotels")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Hotels {
-    @JsonProperty ("hotelsID")
+    @XmlElement(name = "hotelsID")
+    @JsonProperty("hotelsID")
     private int hotelsID;
-    @JsonProperty ("hotelName")
+
+    @XmlElement(name = "hotelName")
+    @JsonProperty("hotelName")
     private String hotelName;
-    @JsonProperty ("address")
+
+    @XmlElementWrapper(name = "address")
+    @XmlElement(name = "line")
+    @JsonProperty("address")
     private List<String> address;
-    @JsonProperty ("destinationsID")
+
+    @XmlElementWrapper(name = "destinationsID")
+    @XmlElement(name = "destination")
+    @JsonProperty("destinationsID")
     private List<Destinations> destinationsID;
 
     public int getHotelsID() {

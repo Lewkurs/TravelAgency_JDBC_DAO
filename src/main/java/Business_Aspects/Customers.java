@@ -1,14 +1,24 @@
 package Business_Aspects;
 
+import jakarta.xml.bind.annotation.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@XmlRootElement(name = "Customers")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Customers {
+    @XmlElement(name = "customerID")
     @JsonProperty("customerID")
     private int customerID;
+
+    @XmlElement(name = "name")
     @JsonProperty("name")
     private String name;
+
+    @XmlElement(name = "email")
     @JsonProperty("email")
     private String email;
+
+    @XmlElement(name = "contactNumber")
     @JsonProperty("contactNumber")
     private String contactNumber;
 

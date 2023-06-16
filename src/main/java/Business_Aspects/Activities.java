@@ -1,10 +1,22 @@
 package Business_Aspects;
 
+import jakarta.xml.bind.annotation.*;
+@XmlRootElement(name = "Activity")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Activities {
+    @XmlElement(name = "ActivityID")
     private int activityID;
+
+    @XmlElement(name = "ActivityName")
     private String activityName;
+
+    @XmlElement(name = "ActivityDescription")
     private String activityDescription;
+
+    @XmlElement(name = "ActivityPrice")
     private String activityPrice;
+
+    @XmlElement(name = "DestinationID")
     private Destinations destinationID;
 
     public Activities(int activityID, String activityName, String activityDescription, String activityPrice, Destinations destinationID) {

@@ -1,12 +1,36 @@
 package Business_Aspects;
+import jakarta.xml.bind.annotation.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@XmlRootElement(name = "Reviews")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Reviews {
+    @XmlElement(name = "reviewsID")
+    @JsonProperty("reviewsID")
     private int reviewsID;
+
+    @XmlElement(name = "rating")
+    @JsonProperty("rating")
     private int rating;
+
+    @XmlElement(name = "reviewDescription")
+    @JsonProperty("reviewDescription")
     private String reviewDescription;
+
+    @XmlElement(name = "customerID")
+    @JsonProperty("customerID")
     private Customers customerID;
+
+    @XmlElement(name = "hotelID")
+    @JsonProperty("hotelID")
     private Hotels hotelID;
+
+    @XmlElement(name = "destinationID")
+    @JsonProperty("destinationID")
     private Destinations destinationID;
+
+    @XmlElement(name = "activityID")
+    @JsonProperty("activityID")
     private Activities activityID;
 
     public int getReviewsID() {

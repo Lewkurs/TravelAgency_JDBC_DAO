@@ -1,14 +1,23 @@
 package Business_Aspects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.xml.bind.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+@XmlRootElement(name = "Destinations")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Destinations {
-
+    @XmlElement(name = "destinationsID")
     private int destinationsID;
-    private String name;
-    private String description;
-    private double price;
 
+    @XmlElement(name = "name")
+    private String name;
+
+    @XmlElement(name = "description")
+    private String description;
+
+    @XmlElement(name = "price")
+    private double price;
     public int getDestinationsID() {
         return destinationsID;
     }
