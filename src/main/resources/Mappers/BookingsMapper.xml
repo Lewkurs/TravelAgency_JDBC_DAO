@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DAOImplementations.BookingsDAOImpl">
+
+    <resultMap id="bookingResultMap" type="Business_Aspects.Bookings" autoMapping="false">
+        <id property="bookingID" column="booking_id"/>
+        <result property="bookingDate" column="booking_date"/>
+        <result property="totalCost" column="total_cost"/>
+        <association property="customerID" column="customer_id" javaType="Business_Aspects.Customers"/>
+        <association property="paymentID" column="payment_id" javaType="Business_Aspects.Payments"/>
+        <association property="flightID" column="flight_id" javaType="Business_Aspects.Flights"/>
+        <association property="hotelID" column="hotel_id" javaType="Business_Aspects.Hotels"/>
+        <!-- Add more result mappings for other Bookings fields -->
+    </resultMap>
+
+    <insert id="create" parameterType="Business_Aspects.Bookings" useGeneratedKeys="true" keyProperty="bookingID">
+        INSERT INTO bookings(booking_date, total_cost, customer_id, payment_id, flight_id, hotel_id)
+        VALUES (#{bookingDate}, #{totalCost}, #{customerID.customerID}, #{paymentID.paymentsID}, #{flightID.flightsID}, #{hotelID.hotelsID})
+    </insert>
+
+    <select id="getById" resultMap="bookingResultMap" parameterType="int">
+        SELECT * FROM bookings WHERE booking_id = #{bookingID}
+    </select>
+
+    <select id="getAll" resultMap="bookingResultMap">
+        SELECT * FROM bookings
+    </select>
+
+    <update id="update" parameterType="Business_Aspects.Bookings">
+        UPDATE bookings
+        SET booking_date = #{bookingDate}, total_cost = #{totalCost},
+        customer_id = #{customerID.customerID}, payment_id = #{paymentID.paymentsID},
+        flight_id = #{flightID.flightsID}, hotel_id = #{hotelID.hotelsID}
+        WHERE booking_id = #{bookingID}
+    </update>
+
+    <delete id="delete" parameterType="Business_Aspects.Bookings">
+        DELETE FROM bookings WHERE booking_id = #{bookingID}
+    </delete>
+
+</mapper>

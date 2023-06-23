@@ -1,10 +1,31 @@
 package Business_Aspects;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Collections;
+import java.util.List;
+import jakarta.xml.bind.annotation.*;
+
+@XmlRootElement(name = "Hotels")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Hotels {
+    @XmlElement(name = "hotelsID")
+    @JsonProperty("hotelsID")
     private int hotelsID;
+
+    @XmlElement(name = "hotelName")
+    @JsonProperty("hotelName")
     private String hotelName;
-    private String address;
-    private Destinations destinationsID;
+
+    @XmlElementWrapper(name = "address")
+    @XmlElement(name = "line")
+    @JsonProperty("address")
+    private List<String> address;
+
+    @XmlElementWrapper(name = "destinationsID")
+    @XmlElement(name = "destination")
+    @JsonProperty("destinationsID")
+    private List<Destinations> destinationsID;
 
     public int getHotelsID() {
         return hotelsID;
@@ -23,19 +44,19 @@ public class Hotels {
     }
 
     public String getAddress() {
-        return address;
+        return address.toString();
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.address = Collections.singletonList(address);
     }
 
     public Destinations getDestinationsID() {
-        return destinationsID;
+        return (Destinations) destinationsID;
     }
 
     public void setDestinationsID(Destinations destinationsID) {
-        this.destinationsID = destinationsID;
+        this.destinationsID = (List<Destinations>) destinationsID;
     }
 
     @Override

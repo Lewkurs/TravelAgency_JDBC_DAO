@@ -1,10 +1,30 @@
 package Business_Aspects;
 
 import java.util.Objects;
+import jakarta.xml.bind.annotation.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@XmlRootElement(name = "DestinationBookings")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DestinationBookings {
+    @XmlElement(name = "destinationBookingID")
+    private int destinationBookingID;
+
+    @XmlElement(name = "destinationID")
+    @JsonProperty("destinationID")
     private Destinations destinationID;
+
+    @XmlElement(name = "bookingID")
+    @JsonProperty("bookingID")
     private Bookings bookingID;
+
+    public void setDestinationBookingID(int destinationBookingID) {
+        this.destinationBookingID = destinationBookingID;
+    }
+
+    public int getDestinationBookingID() {
+        return destinationBookingID;
+    }
 
     public DestinationBookings(Destinations destinationID, Bookings bookingID) {
         this.destinationID = destinationID;
@@ -52,4 +72,5 @@ public class DestinationBookings {
     public int hashCode() {
         return Objects.hash(bookingID, destinationID);
     }
+
 }

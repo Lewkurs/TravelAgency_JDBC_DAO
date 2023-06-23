@@ -12,23 +12,23 @@ public class TransportationService {
         this.transportationDAO = transportationDAO;
     }
 
-    public Transportation getTransportationByID(int id) {
-        return transportationDAO.getTransportationByID(id);
+    public Transportation create(Transportation transportation) {
+        return transportationDAO.create(transportation);
     }
 
-    public List<Transportation> getAllTransportations() {
-        return transportationDAO.getAllTransportations();
+    public Transportation getById(int id) {
+        return transportationDAO.getById(id);
     }
 
-    public void saveTransportation(Transportation transportation) {
-        transportationDAO.save(transportation);
+    public List<Transportation> getAll() {
+        return transportationDAO.getAll();
     }
 
-    public void updateTransportation(Transportation transportation) {
-        transportationDAO.update(transportation);
+    public Transportation update(Transportation transportation) {
+        return transportationDAO.update(transportation);
     }
 
-    public void deleteTransportation(Transportation transportation) {
-        transportationDAO.delete(transportation);
+    public Transportation delete(Transportation transportation) {
+        return transportationDAO.delete(transportation);
     }
 }

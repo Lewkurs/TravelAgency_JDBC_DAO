@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flights>
+    <Flight>
+        <FlightsID>1</FlightsID>
+        <Airline>Airline 1</Airline>
+        <DepartureCity>City A</DepartureCity>
+        <ArrivalCity>City B</ArrivalCity>
+        <DepartureTime>2023-06-15T09:00:00</DepartureTime>
+        <ArrivalTime>2023-06-15T11:00:00</ArrivalTime>
+    </Flight>
+    <Flight>
+        <FlightsID>2</FlightsID>
+        <Airline>Airline 2</Airline>
+        <DepartureCity>City C</DepartureCity>
+        <ArrivalCity>City D</ArrivalCity>
+        <DepartureTime>2023-06-16T14:30:00</DepartureTime>
+        <ArrivalTime>2023-06-16T16:30:00</ArrivalTime>
+    </Flight>
+    <!-- Add more Flight elements here -->
+</Flights>

@@ -12,23 +12,23 @@ public class FlightsService {
         this.flightsDAO = flightsDAO;
     }
 
-    public Flights getFlightByID(int id) {
-        return flightsDAO.getFlightsByID(id);
+    public Flights create(Flights flight) {
+        return flightsDAO.create(flight);
     }
 
-    public List<Flights> getAllFlights() {
-        return flightsDAO.getAllFlights();
+    public Flights getById(int id) {
+        return flightsDAO.getById(id);
     }
 
-    public void saveFlight(Flights flight) {
-        flightsDAO.save(flight);
+    public List<Flights> getAll() {
+        return flightsDAO.getAll();
     }
 
-    public void updateFlight(Flights flight) {
-        flightsDAO.update(flight);
+    public Flights update(Flights flight) {
+        return flightsDAO.update(flight);
     }
 
-    public void deleteFlight(Flights flight) {
-        flightsDAO.delete(flight);
+    public Flights delete(Flights flight) {
+        return flightsDAO.delete(flight);
     }
 }

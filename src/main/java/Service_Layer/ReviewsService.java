@@ -12,23 +12,23 @@ public class ReviewsService {
         this.reviewsDAO = reviewsDAO;
     }
 
-    public Reviews getReviewByID(int id) {
-        return reviewsDAO.getReviewsByID(id);
+    public Reviews create(Reviews review) {
+        return reviewsDAO.create(review);
     }
 
-    public List<Reviews> getAllReviews() {
-        return reviewsDAO.getAllReviews();
+    public Reviews getById(int id) {
+        return reviewsDAO.getById(id);
     }
 
-    public void saveReview(Reviews review) {
-        reviewsDAO.save(review);
+    public List<Reviews> getAll() {
+        return reviewsDAO.getAll();
     }
 
-    public void updateReview(Reviews review) {
-        reviewsDAO.update(review);
+    public Reviews update(Reviews review) {
+        return reviewsDAO.update(review);
     }
 
-    public void deleteReview(Reviews review) {
-        reviewsDAO.delete(review);
+    public Reviews delete(Reviews review) {
+        return reviewsDAO.delete(review);
     }
 }

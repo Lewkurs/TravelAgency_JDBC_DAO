@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Payments>
+    <Payment>
+        <PaymentsID>1</PaymentsID>
+        <PaymentMethod>Credit Card</PaymentMethod>
+        <PaymentAmount>100.00</PaymentAmount>
+    </Payment>
+    <Payment>
+        <PaymentsID>2</PaymentsID>
+        <PaymentMethod>PayPal</PaymentMethod>
+        <PaymentAmount>50.00</PaymentAmount>
+    </Payment>
+    <!-- Add more Payment elements here -->
+</Payments>

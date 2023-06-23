@@ -12,23 +12,23 @@ public class HotelsService {
         this.hotelsDAO = hotelsDAO;
     }
 
-    public Hotels getHotelByID(int id) {
-        return hotelsDAO.getHotelsByID(id);
+    public Hotels create(Hotels hotel) {
+        return hotelsDAO.create(hotel);
     }
 
-    public List<Hotels> getAllHotels() {
-        return hotelsDAO.getAllHotels();
+    public Hotels getById(int id) {
+        return hotelsDAO.getById(id);
     }
 
-    public void saveHotel(Hotels hotel) {
-        hotelsDAO.save(hotel);
+    public List<Hotels> getAll() {
+        return hotelsDAO.getAll();
     }
 
-    public void updateHotel(Hotels hotel) {
-        hotelsDAO.update(hotel);
+    public Hotels update(Hotels hotel) {
+        return hotelsDAO.update(hotel);
     }
 
-    public void deleteHotel(Hotels hotel) {
-        hotelsDAO.delete(hotel);
+    public Hotels delete(Hotels hotel) {
+        return hotelsDAO.delete(hotel);
     }
 }

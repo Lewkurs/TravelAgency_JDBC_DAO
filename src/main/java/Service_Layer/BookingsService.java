@@ -1,34 +1,34 @@
 package Service_Layer;
 
-import java.util.List;
 import Business_Aspects.Bookings;
-import DAO.BookingsDAO;
+import DAOImplementations.BookingsDAOImpl;
+
+import java.util.List;
 
 public class BookingsService {
-    private BookingsDAO bookingsDAO;
+    private BookingsDAOImpl bookingsDAO;
 
-    public BookingsService(BookingsDAO bookingsDAO) {
+    public BookingsService(BookingsDAOImpl bookingsDAO) {
         this.bookingsDAO = bookingsDAO;
     }
 
-    public Bookings getBookingByID(int id) {
-        return bookingsDAO.getBookingsByID(id);
+    public Bookings create(Bookings booking) {
+        return bookingsDAO.create(booking);
     }
 
-    public List<Bookings> getAllBookings() {
-        return bookingsDAO.getAllBookings();
+    public Bookings getById(int id) {
+        return bookingsDAO.getById(id);
     }
 
-    public void saveBooking(Bookings booking) {
-        bookingsDAO.save(booking);
+    public List<Bookings> getAll() {
+        return bookingsDAO.getAll();
     }
 
-    public void updateBooking(Bookings booking) {
-        bookingsDAO.update(booking);
+    public Bookings update(Bookings booking) {
+        return bookingsDAO.update(booking);
     }
 
-    public void deleteBooking(Bookings booking) {
-        bookingsDAO.delete(booking);
+    public Bookings delete(int bookingID) {
+        return bookingsDAO.delete(bookingID);
     }
 }
-

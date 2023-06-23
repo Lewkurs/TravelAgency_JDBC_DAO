@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Destinations>
+    <Destination>
+        <DestinationsID>1</DestinationsID>
+        <Name>Paris</Name>
+        <Description>City of Love</Description>
+        <Price>1000.00</Price>
+    </Destination>
+    <Destination>
+        <DestinationsID>2</DestinationsID>
+        <Name>New York</Name>
+        <Description>The Big Apple</Description>
+        <Price>1500.00</Price>
+    </Destination>
+    <!-- Add more Destination elements here -->
+</Destinations>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bookings>
+    <Booking>
+        <BookingID>1</BookingID>
+        <BookingDate>12/06/2023</BookingDate>
+        <TotalCost>250.00</TotalCost>
+        <CustomerID>1</CustomerID>
+        <PaymentID>1</PaymentID>
+        <FlightID>1</FlightID>
+        <HotelID>1</HotelID>
+    </Booking>
+    <Booking>
+        <BookingID>2</BookingID>
+        <BookingDate>13/06/2023</BookingDate>
+        <TotalCost>500.00</TotalCost>
+        <CustomerID>2</CustomerID>
+        <PaymentID>2</PaymentID>
+        <FlightID>2</FlightID>
+        <HotelID>2</HotelID>
+    </Booking>
+    <!-- Add more Booking elements here -->
+</Bookings>

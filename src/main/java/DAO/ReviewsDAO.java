@@ -4,10 +4,15 @@ import Business_Aspects.Reviews;
 
 import java.util.List;
 
-public interface ReviewsDAO {
-    Reviews getReviewsByID(int id);
-    List<Reviews> getAllReviews();
-    void save(Reviews reviews);
-    void update(Reviews reviews);
-    void delete(Reviews reviews);
+public interface ReviewsDAO extends IDAO<Reviews> {
+
+        Reviews create(Reviews review); // Create a new review
+
+        Reviews getById(int reviewID); // Get a review by its ID
+
+        List<Reviews> getAll(); // Get all reviews
+
+        Reviews update(Reviews review); // Update a review
+
+        Reviews delete(Reviews review); // Delete a review
 }

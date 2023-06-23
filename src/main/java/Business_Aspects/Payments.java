@@ -1,8 +1,21 @@
 package Business_Aspects;
 
+import jakarta.xml.bind.annotation.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@XmlRootElement(name = "Payments")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Payments {
+    @XmlElement(name = "paymentsID")
+    @JsonProperty("paymentsID")
     private int paymentsID;
+
+    @XmlElement(name = "paymentMethod")
+    @JsonProperty("paymentMethod")
     private String paymentMethod;
+
+    @XmlElement(name = "paymentAmount")
+    @JsonProperty("paymentAmount")
     private double paymentAmount;
 
     public int getPaymentsID() {

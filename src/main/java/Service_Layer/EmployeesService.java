@@ -12,23 +12,23 @@ public class EmployeesService {
         this.employeesDAO = employeesDAO;
     }
 
-    public Employees getEmployeeByID(int id) {
-        return employeesDAO.getEmployeesByID(id);
+    public Employees create(Employees employee) {
+        return employeesDAO.create(employee);
     }
 
-    public List<Employees> getAllEmployees() {
-        return employeesDAO.getAllEmployees();
+    public Employees getById(int id) {
+        return employeesDAO.getById(id);
     }
 
-    public void saveEmployee(Employees employee) {
-        employeesDAO.save(employee);
+    public List<Employees> getAll() {
+        return employeesDAO.getAll();
     }
 
-    public void updateEmployee(Employees employee) {
-        employeesDAO.update(employee);
+    public Employees update(Employees employee) {
+        return employeesDAO.update(employee);
     }
 
-    public void deleteEmployee(Employees employee) {
-        employeesDAO.delete(employee);
+    public Employees delete(Employees employee) {
+        return employeesDAO.delete(employee);
     }
 }

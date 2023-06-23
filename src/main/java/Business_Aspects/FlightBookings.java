@@ -1,9 +1,16 @@
 package Business_Aspects;
 
 import java.util.Objects;
+import jakarta.xml.bind.annotation.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@XmlRootElement(name = "FlightBookings")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class FlightBookings {
+    @XmlElement(name = "flightID")
     private Flights flightID;
+
+    @XmlElement(name = "bookingID")
     private Bookings bookingID;
 
     public FlightBookings(Flights flightID, Bookings bookingID) {

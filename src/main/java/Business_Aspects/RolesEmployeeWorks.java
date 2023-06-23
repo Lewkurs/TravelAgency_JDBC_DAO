@@ -1,9 +1,18 @@
 package Business_Aspects;
 
 import java.util.Objects;
+import jakarta.xml.bind.annotation.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@XmlRootElement(name = "RolesEmployeeWorks")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RolesEmployeeWorks {
+    @XmlElement(name = "role")
+    @JsonProperty("role")
     private EmployeeRoles role;
+
+    @XmlElement(name = "employee")
+    @JsonProperty("employee")
     private Employees employee;
 
     public RolesEmployeeWorks(EmployeeRoles role, Employees employee) {

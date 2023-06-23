@@ -1,7 +1,7 @@
 package Service_Layer;
 
-import DAO.DestinationBookingsDAO;
 import Business_Aspects.DestinationBookings;
+import DAO.DestinationBookingsDAO;
 
 import java.util.List;
 
@@ -12,21 +12,23 @@ public class DestinationBookingsService {
         this.destinationBookingsDAO = destinationBookingsDAO;
     }
 
-
-    public List<DestinationBookings> getAllDestinationBookings() {
-        return destinationBookingsDAO.getAllDestinationBookings();
+    public DestinationBookings create(DestinationBookings destinationBooking) {
+        return destinationBookingsDAO.create(destinationBooking);
     }
 
-    public void saveDestinationBooking(DestinationBookings destinationBooking) {
-        destinationBookingsDAO.save(destinationBooking);
+    public DestinationBookings getById(int id) {
+        return destinationBookingsDAO.getById(id);
     }
 
-    public void updateDestinationBooking(DestinationBookings destinationBooking) {
-        destinationBookingsDAO.update(destinationBooking);
+    public List<DestinationBookings> getAll() {
+        return destinationBookingsDAO.getAll();
     }
 
-    public void deleteDestinationBooking(DestinationBookings destinationBooking) {
-        destinationBookingsDAO.delete(destinationBooking);
+    public DestinationBookings update(DestinationBookings destinationBooking) {
+        return destinationBookingsDAO.update(destinationBooking);
+    }
+
+    public DestinationBookings delete(DestinationBookings destinationBooking) {
+        return destinationBookingsDAO.delete(destinationBooking);
     }
 }
-

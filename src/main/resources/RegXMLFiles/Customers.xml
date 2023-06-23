@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Customers>
+    <Customer>
+        <CustomerID>1</CustomerID>
+        <Name>John Doe</Name>
+        <Email>johndoe@example.com</Email>
+        <ContactNumber>+1234567890</ContactNumber>
+    </Customer>
+    <Customer>
+        <CustomerID>2</CustomerID>
+        <Name>Jane Smith</Name>
+        <Email>janesmith@example.com</Email>
+        <ContactNumber>+9876543210</ContactNumber>
+    </Customer>
+    <!-- Add more Customer elements here -->
+</Customers>

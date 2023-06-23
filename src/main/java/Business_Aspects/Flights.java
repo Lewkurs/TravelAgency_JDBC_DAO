@@ -1,14 +1,42 @@
 package Business_Aspects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.xml.bind.annotation.*;
+
+
+@XmlRootElement(name = "Flights")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Flights {
+    @XmlElement(name = "flightsID")
+    @JsonProperty("flightsID")
     private int flightsID;
+
+    @XmlElement(name = "airline")
+    @JsonProperty("airline")
     private String airline;
+
+    @XmlElement(name = "departureCity")
+    @JsonProperty("departureCity")
     private String departureCity;
+
+    @XmlElement(name = "arrivalCity")
+    @JsonProperty("arrivalCity")
     private String arrivalCity;
+
+    @XmlElement(name = "departureTime")
+    @JsonProperty("departureTime")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private String departureTime;
+
+    @XmlElement(name = "arrivalTime")
+    @JsonProperty("arrivalTime")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private String arrivalTime;
 
     public int getFlightsID() {
+
+
         return flightsID;
     }
 

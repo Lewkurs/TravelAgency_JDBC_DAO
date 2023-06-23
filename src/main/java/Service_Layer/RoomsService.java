@@ -12,23 +12,23 @@ public class RoomsService {
         this.roomsDAO = roomsDAO;
     }
 
-    public Rooms getRoomByID(int id) {
-        return roomsDAO.getRoomByID(id);
+    public Rooms create(Rooms room) {
+        return roomsDAO.create(room);
     }
 
-    public List<Rooms> getAllRooms() {
-        return roomsDAO.getAllRooms();
+    public Rooms getById(int id) {
+        return roomsDAO.getById(id);
     }
 
-    public void saveRoom(Rooms room) {
-        roomsDAO.save(room);
+    public List<Rooms> getAll() {
+        return roomsDAO.getAll();
     }
 
-    public void updateRoom(Rooms room) {
-        roomsDAO.update(room);
+    public Rooms update(Rooms room) {
+        return roomsDAO.update(room);
     }
 
-    public void deleteRoom(Rooms room) {
-        roomsDAO.delete(room);
+    public Rooms delete(Rooms room) {
+        return roomsDAO.delete(room);
     }
 }

@@ -12,19 +12,23 @@ public class RolesEmployeeWorksService {
         this.rolesEmployeeWorksDAO = rolesEmployeeWorksDAO;
     }
 
-    public List<RolesEmployeeWorks> getAllRolesEmployeeWorks() {
-        return rolesEmployeeWorksDAO.getAllRolesEmployeeWorks();
+    public RolesEmployeeWorks create(RolesEmployeeWorks role) {
+        return rolesEmployeeWorksDAO.create(role);
     }
 
-    public void saveRolesEmployeeWorks(RolesEmployeeWorks rolesEmployeeWorks) {
-        rolesEmployeeWorksDAO.save(rolesEmployeeWorks);
+    public RolesEmployeeWorks getById(int id) {
+        return rolesEmployeeWorksDAO.getById(id);
     }
 
-    public void updateRolesEmployeeWorks(RolesEmployeeWorks rolesEmployeeWorks) {
-        rolesEmployeeWorksDAO.update(rolesEmployeeWorks);
+    public List<RolesEmployeeWorks> getAll() {
+        return rolesEmployeeWorksDAO.getAll();
     }
 
-    public void deleteRolesEmployeeWorks(RolesEmployeeWorks rolesEmployeeWorks) {
-        rolesEmployeeWorksDAO.delete(rolesEmployeeWorks);
+    public RolesEmployeeWorks update(RolesEmployeeWorks role) {
+        return rolesEmployeeWorksDAO.update(role);
+    }
+
+    public RolesEmployeeWorks delete(RolesEmployeeWorks role) {
+        return rolesEmployeeWorksDAO.delete(role);
     }
 }

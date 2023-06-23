@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Activities>
+    <Activity>
+        <ActivityID>1</ActivityID>
+        <ActivityName>Hiking</ActivityName>
+        <ActivityDescription>Enjoy hiking in the mountains</ActivityDescription>
+        <ActivityPrice>50.00</ActivityPrice>
+        <DestinationID>1</DestinationID>
+    </Activity>
+    <Activity>
+        <ActivityID>2</ActivityID>
+        <ActivityName>Scuba Diving</ActivityName>
+        <ActivityDescription>Explore the underwater world</ActivityDescription>
+        <ActivityPrice>100.00</ActivityPrice>
+        <DestinationID>2</DestinationID>
+    </Activity>
+    <!-- Add more Activity elements here -->
+</Activities>
