@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DAOImplementations.FlightsDAOImpl">
+
+    <resultMap id="flightResultMap" type="Business_Aspects.Flights" autoMapping="false">
+        <id property="flightsID" column="flight_id"/>
+        <result property="airline" column="airline"/>
+        <result property="departureCity" column="departure_city"/>
+        <result property="arrivalCity" column="arrival_city"/>
+        <result property="departureTime" column="departure_time"/>
+        <result property="arrivalTime" column="arrival_time"/>
+        <!-- Add more result mappings for other Flights fields -->
+    </resultMap>
+
+    <insert id="create" parameterType="Business_Aspects.Flights" useGeneratedKeys="true" keyProperty="flightsID">
+        INSERT INTO flights(airline, departure_city, arrival_city, departure_time, arrival_time)
+        VALUES (#{airline}, #{departureCity}, #{arrivalCity}, #{departureTime}, #{arrivalTime})
+    </insert>
+
+    <select id="getById" resultMap="flightResultMap" parameterType="int">
+        SELECT * FROM flights WHERE flight_id = #{flightID}
+    </select>
+
+    <select id="getAll" resultMap="flightResultMap">
+        SELECT * FROM flights
+    </select>
+
+    <update id="update" parameterType="Business_Aspects.Flights">
+        UPDATE flights
+        SET airline = #{airline}, departure_city = #{departureCity},
+        arrival_city = #{arrivalCity}, departure_time = #{departureTime},
+        arrival_time = #{arrivalTime}
+        WHERE flight_id = #{flightsID}
+    </update>
+
+    <delete id="delete" parameterType="Business_Aspects.Flights">
+        DELETE FROM flights WHERE flight_id = #{flightsID}
+    </delete>
+
+</mapper>

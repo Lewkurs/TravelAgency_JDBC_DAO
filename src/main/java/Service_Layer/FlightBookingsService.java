@@ -2,16 +2,13 @@ package Service_Layer;
 
 import Business_Aspects.FlightBookings;
 import DAO.FlightBookingsDAO;
-import DAOImplementations.FlightBookingsDAOImpl;
-
-import java.util.List;
 
 import java.util.List;
 
 public class FlightBookingsService {
-    private FlightBookingsDAOImpl flightBookingsDAO;
+    private FlightBookingsDAO flightBookingsDAO;
 
-    public FlightBookingsService(FlightBookingsDAOImpl flightBookingsDAO) {
+    public FlightBookingsService(FlightBookingsDAO flightBookingsDAO) {
         this.flightBookingsDAO = flightBookingsDAO;
     }
 
@@ -35,5 +32,3 @@ public class FlightBookingsService {
         return flightBookingsDAO.delete(flightBooking);
     }
 }
-
-

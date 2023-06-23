@@ -3,6 +3,7 @@ package DAOImplementations;
 import Business_Aspects.*;
 import DAO.BookingsDAO;
 import DAO.ConnectionPool;
+import org.apache.ibatis.session.SqlSession;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,10 +11,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BookingsDAOImpl implements BookingsDAO {
+    private final SqlSession sqlSession;
 
+    public BookingsDAOImpl(SqlSession sqlSession) {
+        this.sqlSession = sqlSession;
+    }
     private ResultSet rs = null;
+    private static final Logger logger = Logger.getLogger(BookingsDAOImpl.class.getName());
 
     public Bookings create(Bookings booking) {
         String query = "INSERT INTO bookings(booking_date, total_cost, customer_id, payment_id, flight_id, hotel_id) VALUES (?, ?, ?, ?, ?, ?)";
@@ -30,10 +38,9 @@ public class BookingsDAOImpl implements BookingsDAO {
 
             // Execute the query
             int rowsAffected = ps.executeUpdate();
-            System.out.println("\n" + rowsAffected + " row(s) affected");
+            logger.log(Level.INFO, rowsAffected + " row(s) affected");
         } catch (SQLException e) {
-            System.out.println("Error creating booking: " + e.getMessage());
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error creating booking: " + e.getMessage(), e);
         }
         return booking;
     }
@@ -53,8 +60,7 @@ public class BookingsDAOImpl implements BookingsDAO {
                 return getBookingFromResultSet(rs);
             }
         } catch (SQLException e) {
-            System.out.println("Error retrieving booking: " + e.getMessage());
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error retrieving booking: " + e.getMessage(), e);
         }
         return null;
     }
@@ -75,8 +81,7 @@ public class BookingsDAOImpl implements BookingsDAO {
                 bookingList.add(booking);
             }
         } catch (SQLException e) {
-            System.out.println("Error retrieving bookings: " + e.getMessage());
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error retrieving bookings: " + e.getMessage(), e);
         }
         return bookingList;
     }
@@ -98,10 +103,9 @@ public class BookingsDAOImpl implements BookingsDAO {
 
             // Execute the query
             int rowsAffected = ps.executeUpdate();
-            System.out.println("\n" + rowsAffected + " row(s) affected");
+            logger.log(Level.INFO, rowsAffected + " row(s) affected");
         } catch (SQLException e) {
-            System.out.println("Error updating booking: " + e.getMessage());
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error updating booking: " + e.getMessage(), e);
         }
         return booking;
     }
@@ -121,16 +125,15 @@ public class BookingsDAOImpl implements BookingsDAO {
 
             // Execute the query
             int rowsAffected = ps.executeUpdate();
-            System.out.println("\n" + rowsAffected + " row(s) deleted.");
+            logger.log(Level.INFO, rowsAffected + " row(s) deleted.");
 
             if (rowsAffected > 0) {
-                System.out.println("Booking with ID: " + bookingID + " deleted successfully");
+                logger.log(Level.INFO, "Booking with ID: " + bookingID + " deleted successfully");
             } else {
-                System.out.println("No booking with ID: " + bookingID + " found");
+                logger.log(Level.INFO, "No booking with ID: " + bookingID + " found");
             }
         } catch (SQLException e) {
-            System.out.println("Error deleting booking: " + e.getMessage());
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error deleting booking: " + e.getMessage(), e);
         }
         return null;
     }

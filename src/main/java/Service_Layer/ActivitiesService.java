@@ -2,18 +2,13 @@ package Service_Layer;
 
 import Business_Aspects.Activities;
 import DAO.ActivitiesDAO;
-import DAOImplementations.ActivitiesDAOImpl;
-
-import java.sql.SQLException;
-import java.util.List;
-
 
 import java.util.List;
 
 public class ActivitiesService {
-    private ActivitiesDAOImpl activitiesDAO;
+    private ActivitiesDAO activitiesDAO;
 
-    public ActivitiesService(ActivitiesDAOImpl activitiesDAO) {
+    public ActivitiesService(ActivitiesDAO activitiesDAO) {
         this.activitiesDAO = activitiesDAO;
     }
 
@@ -37,5 +32,3 @@ public class ActivitiesService {
         return activitiesDAO.delete(activity);
     }
 }
-
-

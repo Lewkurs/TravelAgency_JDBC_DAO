@@ -1,15 +1,14 @@
 package Service_Layer;
 
-import DAO.CustomersDAO;
 import Business_Aspects.Customers;
-import DAOImplementations.CustomersDAOImpl;
+import DAO.CustomersDAO;
 
 import java.util.List;
 
 public class CustomersService {
-    private CustomersDAOImpl customersDAO;
+    private CustomersDAO customersDAO;
 
-    public CustomersService(CustomersDAOImpl customersDAO) {
+    public CustomersService(CustomersDAO customersDAO) {
         this.customersDAO = customersDAO;
     }
 

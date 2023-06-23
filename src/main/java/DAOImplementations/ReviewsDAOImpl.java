@@ -6,6 +6,8 @@ import DAO.ReviewsDAO;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ReviewsDAOImpl implements ReviewsDAO {
 
@@ -16,6 +18,7 @@ public class ReviewsDAOImpl implements ReviewsDAO {
     private static final String DELETE_QUERY = "DELETE FROM reviews WHERE review_id = ?";
 
     private Connection connection;
+    private Logger logger = Logger.getLogger(ReviewsDAOImpl.class.getName());
 
     public ReviewsDAOImpl(Connection connection) {
         this.connection = connection;
@@ -35,16 +38,18 @@ public class ReviewsDAOImpl implements ReviewsDAO {
             if (rowsAffected > 0) {
                 ResultSet generatedKeys = ps.getGeneratedKeys();
                 if (generatedKeys.next()) {
-                    review.setReviewsID(generatedKeys.getInt(1));
+                    int generatedId = generatedKeys.getInt(1);
+                    review.setReviewsID(generatedId);
+                    return review;
                 }
-                return review;
             }
         } catch (SQLException e) {
-            System.out.println("Error creating review: " + e.getMessage());
+            logger.log(Level.SEVERE,"Error creating review: ", e);
             e.printStackTrace();
         }
         return null;
     }
+
 
     @Override
     public Reviews getById(int reviewID) {
@@ -68,12 +73,18 @@ public class ReviewsDAOImpl implements ReviewsDAO {
                 Destinations destination = new Destinations();
                 destination.setDestinationsID(rs.getInt("destination_id"));
                 review.setDestinationID(destination);
-                Activities activity = new Activities();
+                Activities activity = new Activities(
+                        rs.getInt("activity_id"),
+                        rs.getString("activity_name"),
+                        rs.getString("activity_description"),
+                        rs.getString("activity_price"),
+                        destination
+                );
                 activity.setActivityID(rs.getInt("activity_id"));
                 review.setActivityID(activity);
             }
         } catch (SQLException e) {
-            System.out.println("Error retrieving review: " + e.getMessage());
+            logger.log(Level.SEVERE,"Error retrieving review: ", e);
             e.printStackTrace();
         }
         return review;
@@ -84,7 +95,6 @@ public class ReviewsDAOImpl implements ReviewsDAO {
         List<Reviews> reviewList = new ArrayList<>();
         try (PreparedStatement ps = connection.prepareStatement(SELECT_ALL_QUERY)) {
             ResultSet rs = ps.executeQuery();
-
             while (rs.next()) {
                 Reviews review = new Reviews();
                 review.setReviewsID(rs.getInt("review_id"));
@@ -100,14 +110,20 @@ public class ReviewsDAOImpl implements ReviewsDAO {
                 Destinations destination = new Destinations();
                 destination.setDestinationsID(rs.getInt("destination_id"));
                 review.setDestinationID(destination);
-                Activities activity = new Activities();
+                Activities activity = new Activities(
+                        rs.getInt("activity_id"),
+                        rs.getString("activity_name"),
+                        rs.getString("activity_description"),
+                        rs.getString("activity_price"),
+                        destination
+                );
                 activity.setActivityID(rs.getInt("activity_id"));
                 review.setActivityID(activity);
 
                 reviewList.add(review);
             }
         } catch (SQLException e) {
-            System.out.println("Error retrieving reviews: " + e.getMessage());
+            logger.log(Level.SEVERE, "Error retrieving reviews: ", e);
             e.printStackTrace();
         }
         return reviewList;
@@ -129,7 +145,7 @@ public class ReviewsDAOImpl implements ReviewsDAO {
                 return review;
             }
         } catch (SQLException e) {
-            System.out.println("Error updating review: " + e.getMessage());
+            logger.log(Level.SEVERE, "Error updating reviews: ", e);
             e.printStackTrace();
         }
         return null;
@@ -142,12 +158,12 @@ public class ReviewsDAOImpl implements ReviewsDAO {
             ps.setInt(1, reviewID);
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
-                System.out.println("Review with ID: " + reviewID + " deleted successfully");
+                logger.info("Review with ID: " + reviewID + " deleted successfully");
             } else {
-                System.out.println("No review with ID: " + reviewID + " found");
+                logger.info("No review with ID: " + reviewID + " found");
             }
         } catch (SQLException e) {
-            System.out.println("Error deleting review: " + e.getMessage());
+            logger.log(Level.SEVERE, "Error deleting review: ", e);
             e.printStackTrace();
         }
         return review;

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DAOImplementations.CustomersDAOImpl">
+
+    <resultMap id="customerResultMap" type="Business_Aspects.Customers" autoMapping="false">
+        <id property="customerID" column="customer_id"/>
+        <result property="name" column="name"/>
+        <result property="email" column="email"/>
+        <result property="contactNumber" column="contact_number"/>
+        <!-- Add more result mappings for other Customers fields -->
+    </resultMap>
+
+    <insert id="create" parameterType="Business_Aspects.Customers" useGeneratedKeys="true" keyProperty="customerID">
+        INSERT INTO customers(name, email, contact_number)
+        VALUES (#{name}, #{email}, #{contactNumber})
+    </insert>
+
+    <select id="getById" resultMap="customerResultMap" parameterType="int">
+        SELECT * FROM customers WHERE customer_id = #{customerID}
+    </select>
+
+    <select id="getAll" resultMap="customerResultMap">
+        SELECT * FROM customers
+    </select>
+
+    <update id="update" parameterType="Business_Aspects.Customers">
+        UPDATE customers
+        SET name = #{name}, email = #{email}, contact_number = #{contactNumber}
+        WHERE customer_id = #{customerID}
+    </update>
+
+    <delete id="delete" parameterType="Business_Aspects.Customers">
+        DELETE FROM customers WHERE customer_id = #{customerID}
+    </delete>
+
+</mapper>

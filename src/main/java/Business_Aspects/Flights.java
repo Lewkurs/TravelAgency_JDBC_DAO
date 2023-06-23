@@ -10,7 +10,7 @@ import jakarta.xml.bind.annotation.*;
 public class Flights {
     @XmlElement(name = "flightsID")
     @JsonProperty("flightsID")
-    private static int flightsID;
+    private int flightsID;
 
     @XmlElement(name = "airline")
     @JsonProperty("airline")
@@ -34,7 +34,7 @@ public class Flights {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private String arrivalTime;
 
-    public static int getFlightsID() {
+    public int getFlightsID() {
 
 
         return flightsID;

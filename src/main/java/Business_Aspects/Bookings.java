@@ -3,8 +3,6 @@ package Business_Aspects;
 import jakarta.xml.bind.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.ArrayList;
-import java.util.List;
 
 @XmlRootElement(name = "Bookings")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -22,25 +20,21 @@ public class Bookings {
     @JsonProperty("totalCost")
     private double totalCost;
 
-    @XmlElementWrapper(name = "customerIDs")
     @XmlElement(name = "customerID")
     @JsonProperty("customerID")
-    private List<Customers> customerID;
+    private Customers customerID;
 
-    @XmlElementWrapper(name = "paymentIDs")
     @XmlElement(name = "paymentID")
     @JsonProperty("paymentID")
-    private List<Payments> paymentID;
+    private Payments paymentID;
 
-    @XmlElementWrapper(name = "flightIDs")
     @XmlElement(name = "flightID")
     @JsonProperty("flightID")
-    private List<Flights> flightID;
+    private Flights flightID;
 
-    @XmlElementWrapper(name = "hotelIDs")
     @XmlElement(name = "hotelID")
     @JsonProperty("hotelID")
-    private List<Hotels> hotelID;
+    private Hotels hotelID;
 
     public int getBookingID() {
         return bookingID;
@@ -66,35 +60,35 @@ public class Bookings {
         this.totalCost = totalCost;
     }
 
-    public List<Customers> getCustomerID() {
+    public Customers getCustomerID() {
         return customerID;
     }
 
-    public void setCustomerID(List<Customers> customerID) {
+    public void setCustomerID(Customers customerID) {
         this.customerID = customerID;
     }
 
-    public List<Payments> getPaymentID() {
+    public Payments getPaymentID() {
         return paymentID;
     }
 
-    public void setPaymentID(List<Payments> paymentID) {
+    public void setPaymentID(Payments paymentID) {
         this.paymentID = paymentID;
     }
 
-    public List<Flights> getFlightID() {
+    public Flights getFlightID() {
         return flightID;
     }
 
-    public void setFlightID(List<Flights> flightID) {
+    public void setFlightID(Flights flightID) {
         this.flightID = flightID;
     }
 
-    public List<Hotels> getHotelID() {
+    public Hotels getHotelID() {
         return hotelID;
     }
 
-    public void setHotelID(List<Hotels> hotelID) {
+    public void setHotelID(Hotels hotelID) {
         this.hotelID = hotelID;
     }
 

@@ -2,16 +2,13 @@ package Service_Layer;
 
 import Business_Aspects.Reviews;
 import DAO.ReviewsDAO;
-import DAOImplementations.ReviewsDAOImpl;
-
-import java.util.List;
 
 import java.util.List;
 
 public class ReviewsService {
-    private ReviewsDAOImpl reviewsDAO;
+    private ReviewsDAO reviewsDAO;
 
-    public ReviewsService(ReviewsDAOImpl reviewsDAO) {
+    public ReviewsService(ReviewsDAO reviewsDAO) {
         this.reviewsDAO = reviewsDAO;
     }
 
@@ -35,4 +32,3 @@ public class ReviewsService {
         return reviewsDAO.delete(review);
     }
 }
-

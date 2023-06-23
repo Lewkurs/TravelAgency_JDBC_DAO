@@ -2,16 +2,13 @@ package Service_Layer;
 
 import Business_Aspects.EmployeeRoles;
 import DAO.EmployeeRolesDAO;
-import DAOImplementations.EmployeeRolesDAOImpl;
-
-import java.util.List;
 
 import java.util.List;
 
 public class EmployeeRolesService {
-    private EmployeeRolesDAOImpl employeeRolesDAO;
+    private EmployeeRolesDAO employeeRolesDAO;
 
-    public EmployeeRolesService(EmployeeRolesDAOImpl employeeRolesDAO) {
+    public EmployeeRolesService(EmployeeRolesDAO employeeRolesDAO) {
         this.employeeRolesDAO = employeeRolesDAO;
     }
 
@@ -35,5 +32,3 @@ public class EmployeeRolesService {
         return employeeRolesDAO.delete(employeeRole);
     }
 }
-
-

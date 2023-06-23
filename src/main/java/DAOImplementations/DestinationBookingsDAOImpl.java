@@ -1,14 +1,13 @@
 package DAOImplementations;
 
+import Business_Aspects.*;
 import DAO.ConnectionPool;
 import DAO.DestinationBookingsDAO;
-import Business_Aspects.DestinationBookings;
-import Business_Aspects.Destinations;
-import Business_Aspects.Bookings;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class DestinationBookingsDAOImpl implements DestinationBookingsDAO {
 
@@ -17,6 +16,8 @@ public class DestinationBookingsDAOImpl implements DestinationBookingsDAO {
     private static final String SELECT_ALL_QUERY = "SELECT * FROM destination_bookings";
     private static final String UPDATE_QUERY = "UPDATE destination_bookings SET destination_id = ?, booking_id = ? WHERE destination_booking_id = ?";
     private static final String DELETE_QUERY = "DELETE FROM destination_bookings WHERE destination_booking_id = ?";
+
+    private static final Logger logger = Logger.getLogger(DestinationBookingsDAOImpl.class.getName());
 
     private Connection connection;
 
@@ -40,36 +41,35 @@ public class DestinationBookingsDAOImpl implements DestinationBookingsDAO {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Error creating destination booking: " + e.getMessage());
+            logger.severe("Error creating destination booking: " + e.getMessage());
             e.printStackTrace();
         }
         return destinationBooking;
     }
 
     @Override
-    public DestinationBookings getById(int destinationBookingID) {
+    public DestinationBookings getById(int bookingID) {
         DestinationBookings destinationBooking = null;
         try (PreparedStatement ps = connection.prepareStatement(SELECT_BY_ID_QUERY)) {
-            ps.setInt(1, destinationBookingID);
+            ps.setInt(1, bookingID);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                destinationBooking = new DestinationBookings();
-                destinationBooking.setDestinationBookingID(rs.getInt("destination_booking_id"));
                 int destinationID = rs.getInt("destination_id");
-                int bookingID = rs.getInt("booking_id");
                 // Retrieve the corresponding Destinations and Bookings objects and set them
                 Destinations destination = getDestinationByID(destinationID);
                 Bookings booking = getBookingByID(bookingID);
-                destinationBooking.setDestinationID(destination);
-                destinationBooking.setBookingID(booking);
+                destinationBooking = new DestinationBookings(destination, booking);
+                destinationBooking.setDestinationBookingID(rs.getInt("destination_booking_id"));
             }
         } catch (SQLException e) {
-            System.out.println("Error retrieving destination booking: " + e.getMessage());
+            logger.severe("Error retrieving destination booking: " + e.getMessage());
             e.printStackTrace();
         }
         return destinationBooking;
     }
+
+
 
     @Override
     public List<DestinationBookings> getAll() {
@@ -78,19 +78,17 @@ public class DestinationBookingsDAOImpl implements DestinationBookingsDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                DestinationBookings destinationBooking = new DestinationBookings();
-                destinationBooking.setDestinationBookingID(rs.getInt("destination_booking_id"));
                 int destinationID = rs.getInt("destination_id");
                 int bookingID = rs.getInt("booking_id");
                 // Retrieve the corresponding Destinations and Bookings objects and set them
                 Destinations destination = getDestinationByID(destinationID);
                 Bookings booking = getBookingByID(bookingID);
-                destinationBooking.setDestinationID(destination);
-                destinationBooking.setBookingID(booking);
+                DestinationBookings destinationBooking = new DestinationBookings(destination, booking);
+                destinationBooking.setDestinationBookingID(rs.getInt("destination_booking_id"));
                 destinationBookingsList.add(destinationBooking);
             }
         } catch (SQLException e) {
-            System.out.println("Error retrieving destination bookings: " + e.getMessage());
+            logger.info("Error retrieving destination bookings: " + e.getMessage());
             e.printStackTrace();
         }
         return destinationBookingsList;
@@ -99,7 +97,7 @@ public class DestinationBookingsDAOImpl implements DestinationBookingsDAO {
     @Override
     public DestinationBookings update(DestinationBookings destinationBooking) {
         try (PreparedStatement ps = connection.prepareStatement(UPDATE_QUERY)) {
-            ps.setInt(1, destinationBooking.getDestinationID().getDestinationID());
+            ps.setInt(1, destinationBooking.getDestinationID().getDestinationsID());
             ps.setInt(2, destinationBooking.getBookingID().getBookingID());
             ps.setInt(3, destinationBooking.getDestinationBookingID());
 
@@ -108,7 +106,7 @@ public class DestinationBookingsDAOImpl implements DestinationBookingsDAO {
                 return destinationBooking;
             }
         } catch (SQLException e) {
-            System.out.println("Error updating destination booking: " + e.getMessage());
+            logger.severe("Error updating destination booking: " + e.getMessage());
             e.printStackTrace();
         }
         return null;
@@ -124,7 +122,7 @@ public class DestinationBookingsDAOImpl implements DestinationBookingsDAO {
                 return destinationBooking;
             }
         } catch (SQLException e) {
-            System.out.println("Error deleting destination booking: " + e.getMessage());
+            logger.severe("Error deleting destination booking: " + e.getMessage());
             e.printStackTrace();
         }
         return null;

@@ -2,16 +2,13 @@ package Service_Layer;
 
 import Business_Aspects.Transportation;
 import DAO.TransportationDAO;
-import DAOImplementations.TransportationDAOImpl;
-
-import java.util.List;
 
 import java.util.List;
 
 public class TransportationService {
-    private TransportationDAOImpl transportationDAO;
+    private TransportationDAO transportationDAO;
 
-    public TransportationService(TransportationDAOImpl transportationDAO) {
+    public TransportationService(TransportationDAO transportationDAO) {
         this.transportationDAO = transportationDAO;
     }
 
@@ -35,4 +32,3 @@ public class TransportationService {
         return transportationDAO.delete(transportation);
     }
 }
-

@@ -2,16 +2,13 @@ package Service_Layer;
 
 import Business_Aspects.Rooms;
 import DAO.RoomsDAO;
-import DAOImplementations.RoomsDAOImpl;
-
-import java.util.List;
 
 import java.util.List;
 
 public class RoomsService {
-    private RoomsDAOImpl roomsDAO;
+    private RoomsDAO roomsDAO;
 
-    public RoomsService(RoomsDAOImpl roomsDAO) {
+    public RoomsService(RoomsDAO roomsDAO) {
         this.roomsDAO = roomsDAO;
     }
 
@@ -35,4 +32,3 @@ public class RoomsService {
         return roomsDAO.delete(room);
     }
 }
-

@@ -1,18 +1,14 @@
 package Service_Layer;
 
-import DAO.DestinationsDAO;
 import Business_Aspects.Destinations;
-import DAOImplementations.DestinationsDAOImpl;
-
-import java.util.List;
-
+import DAO.DestinationsDAO;
 
 import java.util.List;
 
 public class DestinationsService {
-    private DestinationsDAOImpl destinationsDAO;
+    private DestinationsDAO destinationsDAO;
 
-    public DestinationsService(DestinationsDAOImpl destinationsDAO) {
+    public DestinationsService(DestinationsDAO destinationsDAO) {
         this.destinationsDAO = destinationsDAO;
     }
 
@@ -36,4 +32,3 @@ public class DestinationsService {
         return destinationsDAO.delete(destination);
     }
 }
-

@@ -25,7 +25,7 @@ public class FlightBookingsDAOImpl implements BookingsDAO {
     @Override
     public Bookings create(Bookings booking) {
         try (PreparedStatement ps = connection.prepareStatement(INSERT_QUERY)) {
-            ps.setInt(1, booking.getFlightID().get(0).getFlightsID());
+            ps.setInt(1, booking.getFlightID().getFlightsID());
             ps.setInt(2, booking.getBookingID());
 
             int rowsAffected = ps.executeUpdate();
@@ -56,7 +56,8 @@ public class FlightBookingsDAOImpl implements BookingsDAO {
                 // Create the Bookings object
                 booking = new Bookings();
                 booking.setBookingID(retrievedBookingID);
-                booking.setFlightID(flights);
+                booking.setFlightID(flights.get(0));
+
             }
         } catch (SQLException e) {
             System.out.println("Error retrieving flight booking: " + e.getMessage());
@@ -81,7 +82,8 @@ public class FlightBookingsDAOImpl implements BookingsDAO {
 
                 // Set the retrieved details in the Bookings object
                 booking.setBookingID(bookingID);
-                booking.setFlightID(flights);
+                booking.setFlightID(flights.get(0));
+
 
                 bookingList.add(booking);
             }

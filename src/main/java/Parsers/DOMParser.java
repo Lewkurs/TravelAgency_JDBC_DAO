@@ -4,7 +4,6 @@ package Parsers;
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import java.io.*;
-import java.util.Scanner;
 import java.util.logging.*;
 
 public class DOMParser {
@@ -20,7 +19,7 @@ public class DOMParser {
             logger.addHandler(fileHandler);
 
             // Load the XML file
-            File file = new File("Transportation.xml");
+            File file = new File("RegXMLFiles/Transportation.xml");
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(file);
@@ -28,40 +27,11 @@ public class DOMParser {
             // Get the root element
             Element root = document.getDocumentElement();
 
-            // Display menu
-            displayMenu(root);
-
         } catch (Exception e) {
             logger.log(Level.SEVERE, "An error occurred during XML parsing", e);
         }
     }
 
-    private static void displayMenu(Element root) {
-        boolean exit = false;
-        Scanner scanner = new Scanner(System.in);
-
-        while (!exit) {
-            logger.info("1. Parse transportation elements");
-            logger.info("2. Exit");
-            logger.info("Enter your choice: ");
-
-            int choice = scanner.nextInt();
-
-            switch (choice) {
-                case 1:
-                    parseTransportationElements(root);
-                    break;
-                case 2:
-                    exit = true;
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-                    break;
-            }
-        }
-
-        scanner.close();
-    }
 
     private static void parseTransportationElements(Element root) {
         // Parse the transportation elements

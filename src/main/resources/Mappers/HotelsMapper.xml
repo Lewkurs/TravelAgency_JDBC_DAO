@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DAOImplementations.HotelsDAOImpl">
+
+    <resultMap id="hotelResultMap" type="Business_Aspects.Hotels" autoMapping="false">
+        <id property="hotelsID" column="hotel_id"/>
+        <result property="hotelName" column="hotel_name"/>
+        <result property="address" column="address"/>
+        <!-- Add more result mappings for other Hotels fields -->
+    </resultMap>
+
+    <insert id="create" parameterType="Business_Aspects.Hotels" useGeneratedKeys="true" keyProperty="hotelsID">
+        INSERT INTO hotels(hotel_name, address, destinations_id)
+        VALUES (#{hotelName}, #{address}, #{hotelsID})
+    </insert>
+
+    <select id="getById" resultMap="hotelResultMap" parameterType="int">
+        SELECT * FROM hotels WHERE hotel_id = #{hotelID}
+    </select>
+
+    <select id="getAll" resultMap="hotelResultMap">
+        SELECT * FROM hotels
+    </select>
+
+    <update id="update" parameterType="Business_Aspects.Hotels">
+        UPDATE hotels
+        SET hotel_name = #{hotelName}, address = #{address}
+        WHERE hotel_id = #{hotelsID}
+    </update>
+
+    <delete id="delete" parameterType="Business_Aspects.Hotels">
+        DELETE FROM hotels WHERE hotel_id = #{hotelsID}
+    </delete>
+
+</mapper>

@@ -2,16 +2,13 @@ package Service_Layer;
 
 import Business_Aspects.Payments;
 import DAO.PaymentsDAO;
-import DAOImplementations.PaymentsDAOImpl;
-
-import java.util.List;
 
 import java.util.List;
 
 public class PaymentsService {
-    private PaymentsDAOImpl paymentsDAO;
+    private PaymentsDAO paymentsDAO;
 
-    public PaymentsService(PaymentsDAOImpl paymentsDAO) {
+    public PaymentsService(PaymentsDAO paymentsDAO) {
         this.paymentsDAO = paymentsDAO;
     }
 
@@ -35,4 +32,3 @@ public class PaymentsService {
         return paymentsDAO.delete(payment);
     }
 }
-

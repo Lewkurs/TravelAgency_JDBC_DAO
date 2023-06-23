@@ -7,6 +7,7 @@ import Business_Aspects.RolesEmployeeWorks;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class RolesEmployeeWorksDAOImpl implements RolesEmployeeWorksDAO {
 
@@ -18,6 +19,7 @@ public class RolesEmployeeWorksDAOImpl implements RolesEmployeeWorksDAO {
     private static final String DELETE_QUERY = "DELETE FROM roles_employee_works WHERE role_id = ? AND employee_id = ?";
 
     private Connection connection;
+    private static final Logger logger = Logger.getLogger(RolesEmployeeWorksDAOImpl.class.getName());
 
     public RolesEmployeeWorksDAOImpl(Connection connection) {
         this.connection = connection;
@@ -34,7 +36,7 @@ public class RolesEmployeeWorksDAOImpl implements RolesEmployeeWorksDAO {
                 return rolesEmployeeWorks;
             }
         } catch (SQLException e) {
-            System.out.println("Error creating roles_employee_works: " + e.getMessage());
+            logger.severe("Error creating roles_employee_works: " + e.getMessage());
             e.printStackTrace();
         }
         return null;
@@ -58,7 +60,7 @@ public class RolesEmployeeWorksDAOImpl implements RolesEmployeeWorksDAO {
                 return rolesEmployeeWorks;
             }
         } catch (SQLException e) {
-            System.out.println("Error updating roles_employee_works: " + e.getMessage());
+            logger.severe("Error updating roles_employee_works: " + e.getMessage());
             e.printStackTrace();
         }
         return null;
@@ -71,7 +73,8 @@ public class RolesEmployeeWorksDAOImpl implements RolesEmployeeWorksDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                RolesEmployeeWorks rolesEmployeeWorks = new RolesEmployeeWorks();
+                RolesEmployeeWorks rolesEmployeeWorks = new RolesEmployeeWorks(new EmployeeRoles(), new Employees());
+
                 EmployeeRoles role = new EmployeeRoles();
                 role.setEmployeeRoleID(rs.getInt("role_id"));
                 rolesEmployeeWorks.setRole(role);
@@ -80,7 +83,7 @@ public class RolesEmployeeWorksDAOImpl implements RolesEmployeeWorksDAO {
                 rolesEmployeeWorksList.add(rolesEmployeeWorks);
             }
         } catch (SQLException e) {
-            System.out.println("Error retrieving roles_employee_works: " + e.getMessage());
+            logger.severe("Error retrieving roles_employee_works: " + e.getMessage());
             e.printStackTrace();
         }
         return rolesEmployeeWorksList;
@@ -93,7 +96,8 @@ public class RolesEmployeeWorksDAOImpl implements RolesEmployeeWorksDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                RolesEmployeeWorks rolesEmployeeWorks = new RolesEmployeeWorks();
+                RolesEmployeeWorks rolesEmployeeWorks = new RolesEmployeeWorks(null, null);
+
                 EmployeeRoles role = new EmployeeRoles();
                 role.setEmployeeRoleID(rs.getInt("role_id"));
                 rolesEmployeeWorks.setRole(role);
@@ -104,7 +108,7 @@ public class RolesEmployeeWorksDAOImpl implements RolesEmployeeWorksDAO {
                 rolesEmployeeWorksList.add(rolesEmployeeWorks);
             }
         } catch (SQLException e) {
-            System.out.println("Error retrieving roles_employee_works: " + e.getMessage());
+            logger.severe("Error retrieving roles_employee_works: " + e.getMessage());
             e.printStackTrace();
         }
         return rolesEmployeeWorksList;
@@ -119,12 +123,12 @@ public class RolesEmployeeWorksDAOImpl implements RolesEmployeeWorksDAO {
             ps.setInt(2, employeeID);
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
-                System.out.println("RolesEmployeeWorks with Role ID: " + roleID + " and Employee ID: " + employeeID + " deleted successfully");
+                logger.info("RolesEmployeeWorks with Role ID: " + roleID + " and Employee ID: " + employeeID + " deleted successfully");
             } else {
-                System.out.println("No RolesEmployeeWorks with Role ID: " + roleID + " and Employee ID: " + employeeID + " found");
+                logger.info("No RolesEmployeeWorks with Role ID: " + roleID + " and Employee ID: " + employeeID + " found");
             }
         } catch (SQLException e) {
-            System.out.println("Error deleting RolesEmployeeWorks: " + e.getMessage());
+            logger.severe("Error deleting RolesEmployeeWorks: " + e.getMessage());
             e.printStackTrace();
         }
         return rolesEmployeeWorks;

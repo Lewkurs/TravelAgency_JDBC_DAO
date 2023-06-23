@@ -101,14 +101,9 @@ public class PaymentsDAOImpl implements PaymentsDAO {
     }
 
     @Override
-    public Payments delete(Payments payment) {
-        return null;
-    }
-
-
-    public int delete(int paymentID) {
+    public Payments delete(Payments paymentID) {
         try (PreparedStatement ps = connection.prepareStatement(DELETE_QUERY)) {
-            ps.setInt(1, paymentID);
+            ps.setInt(1, paymentID.getPaymentsID());
 
             int rowsAffected = ps.executeUpdate();
             System.out.println(rowsAffected + " row/s deleted.");

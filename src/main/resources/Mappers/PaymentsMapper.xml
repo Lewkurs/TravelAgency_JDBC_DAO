@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DAOImplementations.PaymentsDAOImpl">
+
+    <resultMap id="paymentResultMap" type="Business_Aspects.Payments" autoMapping="false">
+        <id property="paymentsID" column="payment_id"/>
+        <result property="paymentMethod" column="payment_method"/>
+        <result property="paymentAmount" column="payment_amount"/>
+        <!-- Add more result mappings for other Payment fields -->
+    </resultMap>
+
+    <insert id="create" parameterType="Business_Aspects.Payments" useGeneratedKeys="true" keyProperty="paymentsID">
+        INSERT INTO payments(payment_method, payment_amount)
+        VALUES (#{paymentMethod}, #{paymentAmount})
+    </insert>
+
+    <select id="getById" resultMap="paymentResultMap" parameterType="int">
+        SELECT * FROM payments WHERE payment_id = #{paymentID}
+    </select>
+
+    <select id="getAll" resultMap="paymentResultMap">
+        SELECT * FROM payments
+    </select>
+
+    <update id="update" parameterType="Business_Aspects.Payments">
+        UPDATE payments
+        SET payment_method = #{paymentMethod}, payment_amount = #{paymentAmount}
+        WHERE payment_id = #{paymentsID}
+    </update>
+
+    <delete id="delete" parameterType="Business_Aspects.Payments">
+        DELETE FROM payments WHERE payment_id = #{paymentsID}
+    </delete>
+
+</mapper>

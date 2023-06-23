@@ -2,16 +2,13 @@ package Service_Layer;
 
 import Business_Aspects.Hotels;
 import DAO.HotelsDAO;
-import DAOImplementations.HotelsDAOImpl;
-
-import java.util.List;
 
 import java.util.List;
 
 public class HotelsService {
-    private HotelsDAOImpl hotelsDAO;
+    private HotelsDAO hotelsDAO;
 
-    public HotelsService(HotelsDAOImpl hotelsDAO) {
+    public HotelsService(HotelsDAO hotelsDAO) {
         this.hotelsDAO = hotelsDAO;
     }
 
@@ -35,4 +32,3 @@ public class HotelsService {
         return hotelsDAO.delete(hotel);
     }
 }
-
